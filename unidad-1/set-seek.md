@@ -44,7 +44,7 @@ M=D
 
 #### ¿Qué diferencia hay entre los datos almancenados en la memoria ROM y en la RAM?
 
-Los datos que se almacenan en la memoria ROM son las instrucciones que se pueden agregar en diferentes lenguajes (en este caso de ensamblador), pero el CPU lo leera en un codigo binario, mientras que la memoria RAM almacena los datos que surgen de la ejecución del programa.
+Los datos que se almacenan en la memoria ROM son las instrucciones que se pueden agregar en diferentes lenguajes (en este caso de ensamblador), pero el CPU lo leera en un codigo binario, en resumen son datos almacenados que solo se pueden leer. Mientras que la memoria RAM almacena los datos que surgen de la ejecución del programa, dicha memoria guarda variables, datos intermedios y estructuras como arreglos, y es la memoria principal del CPU, estos datos se pueden cambiar o modificar por que son temporales.
 
 ### Actividad 02
 
