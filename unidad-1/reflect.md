@@ -74,3 +74,17 @@ Cuando al leer el documento comprendi bien los conceptos y herramientas que usa 
 _Pensando en la próxima unidad, ¿Qué harás diferente en tu proceso de estudio para aprender de manera más efectiva?_
 
 Personalmente me gustaría tener un tiempo más extenso para poder solucionar de forma oportuna las actividades planteadas en las unidades y poder hacer más ejemplos que me permitan prácticar más.
+
+### Actividad 06
+
+#### Retroalimentación : Sara Ruiz
+
+Actividad 01: Me gusta mucho la forma en la que tiene redactada su bitacora porque se siente como un proceso muy personal, usa un lenguaje informal de modo que pueda entandorlo más fácil despúes. Además la actividad se ve completa, aunque tal vez profundizaría más en algunas respuestas.
+
+Actividad 02: La actividad 2 esta muy clara, se comprende facilmente su análisis y se nota su interes en traducir todo a su propio lenguaje. 
+
+Actividad 03: La actividad cumple con el analizar como funciona el código planteado.
+
+Actividad 04: El código esta muy bien, pero se siente un poco confuso por su forma de organizarlo.
+
+### Actividad 07
