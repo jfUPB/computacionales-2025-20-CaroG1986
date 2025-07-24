@@ -32,6 +32,8 @@ M=1
 0;JMP
 ```
 
+La elaboración de este programa necesito de comprender bien cómo funcionan las etiquetas en el computador Hack, debido a que en los primeros intentos no se dio el resultado esperado debido a que las etiquetas no fueron llamadas en los lugares adecuados; sin embargo, después se siguió la lógica de que el programa solo saltara si detectaba que el número en el espacio de memoria era menor, de caso contrario solo seguiría con el curso normal del instructivo.
+
 ### Actividad 04
 
 #### Implementación de un ciclo simple
@@ -67,3 +69,5 @@ D=M
 @12
 M=D
 ```
+
+El mayor reto de este programa era encontrar la manera de almacenar el resultado de la suma para poder continuar con los otros números, para esto en la dirección de memoria 0 se utilizó como contador para ir aumentando los números mientras que la memoria 1 almacenaba los resultados de las operaciones; Además cada que se repetía el LOOP se le restaba al dato almacenado en 0 el número 6, con el fin de que en el momento que se llegara al número 6 el programa dejará de sumar y pasará a la etiqueta END donde se almacenaba en resultado en la dirección de memoria 12.
