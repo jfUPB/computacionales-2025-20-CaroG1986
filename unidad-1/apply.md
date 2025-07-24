@@ -42,9 +42,6 @@ _Crea un programa que use un ciclo para sumar los números del 1 al 5 y guarde e
 D=A
 @0
 M=D
-D=0
-@1
-M=D
 
 (LOOP)
 @0
