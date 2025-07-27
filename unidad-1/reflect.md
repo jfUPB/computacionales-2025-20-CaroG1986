@@ -88,3 +88,23 @@ Actividad 03: La actividad cumple con el analizar como funciona el código plant
 Actividad 04: El código esta muy bien, pero se siente un poco confuso por su forma de organizarlo.
 
 ### Actividad 07
+
+_Continuar: ¿Qué aspecto de las actividades, las explicaciones o la dinámica de la clase te ha resultado más útil o te ha gustado más y debería seguir haciendo?_
+
+Me gustó el poder ver línea por línea del código para comprender cuál era su significado ya que nunca antes había trabajado con lenguaje ensamblador y esto logró que se viera más sencillo.
+
+_Dejar de hacer: ¿Qué aspecto de la unidad te ha resultado confuso, poco útil o frustrante? ¿Hay algo que crees que debería eliminar o cambiar drásticamente?_
+
+Creo que no hay algo en específico que esté mal, creo que tal vez el mayor problema sería el tiempo que hay para hacer sus actividades ya que normalmente deben hacerse entre semana y eso hace un poco más complicado sacarles el espacio.
+
+_Empezar a hacer: ¿Qué te habría gustado que hiciéramos que no hicimos? ¿Tienes alguna idea para una actividad o un recurso que podría mejorar el aprendizaje en la próxima unidad?_
+
+Tal vez hacer códigos en clase que incorporen más retos en cuanto a la lógica que se debe usar, ya que a veces es complicado hacer ciertas actividades sin haber practicado o repasado más antes.
+
+_Ritmo y Dificultad: en una escala del 1 (muy fácil/lento) al 5 (muy difícil/rápido), ¿Cómo calificarías el ritmo y la dificultad general de esta unidad? ¿Por qué?_
+
+Yo creo que un tres, es decir, va un buen ritmo ya que como acabamos de empezar no se siente como un gran apuro en cuanto a los temas.
+
+_Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?_
+
+En sí está unidad me pareció muy interesante ya que a pesar de que usamos programas súper sencillos se pudo identificar bien cómo funcionaban, cuál era su relación con la cpu y cómo utilizar el lenguaje de ensamblador. Además se comprendió muy bien cómo los computadores leen los códigos y los transforman de forma que estos puedan ejecutar un programa.
