@@ -118,4 +118,34 @@ M=-1
 
 Para este código primero se verifico que se pintara la linea en la pantalla, después que se moviera a la derecha o a la izquierda aumentando el contador para que suba a otra dirección de memoria, finalmente se programo para que respondiera a las direcciones de teclado correspondientes a las teclas "i" y "d", para que así la linea se mueva según lo indicado.
 
-#### ¿Cóme se vería esto en c++?
+#### ¿Cóme se vería esto en  c++?
+
+``` asm
+#include <conio.h>
+
+const int SCREEN = 48;
+int pantalla[SCREEN];
+int contador = 0;
+
+int main ()
+{
+ for (int i=0; i < SCREEN; i ++)
+ pantalla [contador] = -1;
+
+ while (contador <= SCREEN ){
+  char tecla = _getch();
+  if ( char =='d')
+ {
+   pantalla [contador]= 0;
+   contador ++;
+   pantalla [contador]= -1;
+ }
+ else if (char == 'i')
+ {
+   pantalla [contador] = 0;
+   contador --;
+   pantalla [contador]= -1;
+ }
+}
+return 0;
+}
