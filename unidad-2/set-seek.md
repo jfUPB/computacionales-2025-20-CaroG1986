@@ -120,32 +120,97 @@ Para este código primero se verifico que se pintara la linea en la pantalla, de
 
 #### ¿Cóme se vería esto en  c++?
 
-``` asm
-#include <conio.h>
+``` c++
 
-const int SCREEN = 48;
-int pantalla[SCREEN];
+ int SCREEN;
 int contador = 0;
+int pantalla[SCREEN]=-1;
 
 int main ()
 {
  for (int i=0; i < SCREEN; i ++)
  pantalla [contador] = -1;
 
- while (contador <= SCREEN ){
-  char tecla = _getch();
-  if ( char =='d')
+ while (1){
+  int tmp = KBD;
+  if ( tmp == 100)
  {
-   pantalla [contador]= 0;
+   pantalla [contador+SCREEN]= 0;
    contador ++;
-   pantalla [contador]= -1;
+   pantalla [contador+SCREEN]= -1;
  }
- else if (char == 'i')
+ else if (tmp== 105)
  {
-   pantalla [contador] = 0;
+   pantalla [contador+SCREEN] = 0;
    contador --;
-   pantalla [contador]= -1;
+   pantalla [contador+SCREEN]= -1;
  }
 }
 return 0;
 }
+
+### Actividad 04
+
+Entonces ahora para el siguiente ciclo for
+
+``` c++
+//Adds 1+...+100.
+int sum=0;
+for(int i = 1; i <=100; i++){
+   sum+= i;
+}
+```
+
+Entonces el código ensamblador sería el mismo que por el ciclo while ya que son equivalentes
+
+``` asm
+// Adds1+...+100.
+ @i // i refers to some memory location.
+ M=1 // i=1
+ @sum // sum refers to some memory location.
+ M=0 // sum=0
+ (LOOP)
+ @i
+ D=M // D=i
+ @100
+ D=D-A // D=i-100
+ @END
+ D;JGT // If(i-100)>0 gotoEND
+ @i
+ D=M // D=i
+ @sum
+ M=D+M // sum=sum+i
+ @i
+ M=M+1 // i=i+1
+ @LOOP
+ 0;JMP // GotoLOOP
+ (END)
+ @END
+ 0;JMP // Infinite loop
+```
+<img width="853" height="213" alt="image" src="https://github.com/user-attachments/assets/9ff1dc83-d544-416a-9b6f-db68d4e36e41" />
+
+_Así se ve el programa_
+
+Estos dos ciclos son equivalentes ya que cumplen la misma función y para ser representados en asm es necesario usar las mismas lineas de código.
+
+### Actividad 05 
+
+_nota: "&" es para invocar una dirección_
+_nota: para leer con el puntero sería_
+``` c++
+int j= *ptr; // *ptr es el punteroen este caso
+```
+_nota: para escribir con el puntero sería_
+``` c++
+*ptr=25 // se escribe en el puntero el valor que se quiere ingresar
+```
+ El enunciado es
+``` c++
+int a = 10;
+int* p;
+p = &a;
+*p = 20;
+```
+Para esta actividad la solución sería la siguiente:
+``` asm
