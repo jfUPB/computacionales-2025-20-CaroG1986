@@ -212,5 +212,27 @@ int* p;
 p = &a;
 *p = 20;
 ```
-Para esta actividad la solución sería la siguiente:
+Para esta actividad la solución sería la siguiente:(REVISAR)
 ``` asm
+@10
+D=A
+@a
+M=D
+@a
+D=A
+@P
+M=D
+@20
+D=A
+@P
+A=M
+M=D
+```
+El siguiente enunciado es
+``` c++
+int a = 10;
+int b = 5;
+int *p;
+p = &a;
+b = *p;
+```
