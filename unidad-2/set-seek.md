@@ -160,8 +160,7 @@ for(int i = 1; i <=100; i++){
    sum+= i;
 }
 ```
-
-Entonces el código ensamblador sería el mismo que por el ciclo while ya que son equivalentes
+### Actividad 04
 
 ``` asm
 // Adds1+...+100.
@@ -192,7 +191,7 @@ Entonces el código ensamblador sería el mismo que por el ciclo while ya que so
 
 _Así se ve el programa_
 
-Estos dos ciclos son equivalentes ya que cumplen la misma función y para ser representados en asm es necesario usar las mismas lineas de código.
+Estos dos ciclos son equivalentes ya que cumplen la misma función y para ser representados en asm es necesario usar las mismas lineas de código. Además ambos indican lo mismo, es decir , que se continuara el ciclo hasta llegar a 100.
 
 ### Actividad 05 
 
