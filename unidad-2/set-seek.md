@@ -189,7 +189,7 @@ for(int i = 1; i <=100; i++){
 ```
 <img width="853" height="213" alt="image" src="https://github.com/user-attachments/assets/9ff1dc83-d544-416a-9b6f-db68d4e36e41" />
 
-_Así se ve el programa_
+_Así se ve el programa 🐤_
 
 Estos dos ciclos son equivalentes ya que cumplen la misma función y para ser representados en asm es necesario usar las mismas lineas de código. Además ambos indican lo mismo, es decir , que se continuara el ciclo hasta llegar a 100.
 
@@ -204,14 +204,14 @@ _nota: para escribir con el puntero sería_
 ``` c++
 *ptr=25 // se escribe en el puntero el valor que se quiere ingresar
 ```
- El enunciado es
+ El enunciado es 🐤
 ``` c++
 int a = 10;
 int* p;
 p = &a;
 *p = 20;
 ```
-Para esta actividad la solución sería la siguiente:(REVISAR)
+Para esta actividad la solución sería la siguiente:
 ``` asm
 @10
 D=A
@@ -227,7 +227,9 @@ D=A
 A=M
 M=D
 ```
-El siguiente enunciado es
+Aquí como se ve se usa el puntero para cambiar los datos en la dirección de memoria a usando un puntero o variable.
+
+El siguiente enunciado es 🐤
 ``` c++
 int a = 10;
 int b = 5;
@@ -235,3 +237,28 @@ int *p;
 p = &a;
 b = *p;
 ```
+Para esta actividad la solución sería la siguiente:
+
+``` asm
+@10
+D=A
+@a
+M=D
+@5
+D=A
+@b
+M=D
+@a
+D=A
+@P
+M=D
+@a
+D=M
+@P
+A=M
+M=D
+@b
+M=D
+```
+
+En este código primero se dió los valores para las posiciones a y b, después se le dió al puntero P la dirección de memoria de a, se leyó el valor que estaba en la dirección de memoria de a y finalmente se le dió este valor a través del puntero a la posición b.
