@@ -4,7 +4,7 @@
 
 ### Actividad 06 
 
-El enunciado es:
+**El enunciado es:**
 ```c++
 int arr[] = {1,2,3,4,5,6,7,8,9,10};
 int sum = 0;
@@ -54,6 +54,11 @@ D=A // Almacenar el valor del puntero en D
 0;JMP
 (END)
 ```
+_Prueba de que funciona_
+
+<img width="361" height="80" alt="image" src="https://github.com/user-attachments/assets/01e2fd88-a0ec-430f-8074-d501b51e24ea" />
+<img width="365" height="418" alt="image" src="https://github.com/user-attachments/assets/aecd657c-9793-4201-bd70-4f0b61a94ad4" />
+
 Sin embargo, este código al revisarlo mejor me di cuenta que, a pesar de funcionar, tenía muchos errores en el orden y partes que sobraban, así que decidí seguir la idea del puntero y el almacen de los números pero por partes: 🫐
 ``` asm
 //En esta primera parte llame a la dirección de memoria del arreglo para iniciar el puntero y después guardar en @1 los valores del arreglo
@@ -129,4 +134,5 @@ Ahora en la dirección de memoria 2 se almacena la suma de los números en el ar
 <img width="369" height="119" alt="image" src="https://github.com/user-attachments/assets/e0ca23aa-50d0-4bcc-830a-46243a73d017" />
 
 <img width="380" height="426" alt="image" src="https://github.com/user-attachments/assets/639c8917-c078-4440-8f65-0b3db32e18f3" />
+
 
