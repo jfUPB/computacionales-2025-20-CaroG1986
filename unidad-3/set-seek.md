@@ -20,7 +20,6 @@ Nota: La referencia llama a la variable original
 
 Nota: El puntero llama a la dirección de memoria original y la modifica.
 
-(TERMINAR)
 
 ``` c++
 #include <iostream>
@@ -29,47 +28,52 @@ using namespace std;
 
 // Función que modifica el parámetro pasado por valor
 void swapPorValor(int a, int b) {
-    cout << "Dentro de modificarPorValor, valor inicial de b: " << b << "Valor inicial de a"<< a << endl;
+    cout << "Dentro de swapPorValor, valor inicial de a: " << a << " Valor inicial de b: " << b << endl;
     int tmp = b;
     b = a;
     a = tmp;
-    cout << "Dentro de swapPorValor, valor modificado: " << a <<","<< b << endl;
+    cout << "Dentro de swapPorValor, valor modificado a: " << a << " ,b: " << b << endl;
 }
 
 // Función que modifica el parámetro pasado por referencia
-void modificarPorReferencia(int& n, int& m) {
-    cout << "Dentro de modificarPorReferencia, valor inicial: " << n << endl;
-    n += 5;
-    cout << "Dentro de modificarPorReferencia, valor modificado: " << n << endl;
+void swapPorReferencia(int& a, int& b) {
+    cout << "Dentro de swapPorReferencia, valor inicial de a: " << a << " Valor inicial de b: "<< b << endl;
+	int tmp = b;
+	b = a;
+	a = tmp;
+    cout << "Dentro de swapPorReferencia, valor modificado de a: " << a << "Valor modificado de b: "<< b << endl;
 }
 
 // Función que modifica el parámetro utilizando punteros
-void modificarPorPuntero(int* n, int* m) {
-    cout << "Dentro de modificarPorPuntero, valor inicial: " << *n << endl;
-    *n += 5;
-    cout << "Dentro de modificarPorPuntero, valor modificado: " << *n << endl;
+void swapPorPuntero(int* a, int* b) {
+    cout << "Dentro de swapPorPuntero, valor inicial a: " << *a << " y valor inicial  de b"<< *b << endl;
+	int tmp = *b;
+	*b = *a;
+	*a = tmp;
+    cout << "Dentro de swapPorPuntero, valor modificado de a: " << *a << " Valor modificado de b: "<< *b <<endl;
 }
 
 int main() {
     int a = 10;
     int b = 20;
 
-    cout << "Valor inicial de a (paso por valor): " << a << " y el valor inicial de b (paso por valor) "<< b << endl;
-    cout << "Valor inicial de a (paso por referencia): " << a << "y el valor inicial de b (paso por referencia)"<< b << endl;
-    cout << "Valor inicial de a (paso por puntero): " << a << "y el valr inicial de b (paso por puntero)" << b << endl;
+    cout << "Valor inicial de a (paso por valor): " << a << " y el valor inicial de b (paso por valor) " << b << endl;
+    cout << "Valor inicial de a (paso por referencia): " << a << " y el valor inicial de b (paso por referencia) " << b << endl;
+    cout << "Valor inicial de a (paso por puntero): " << a << " y el valor inicial de b (paso por puntero) " << b << endl;
 
-    cout << "\nLlamando a modificarPorValor(a)..." << endl;
-    swapPorValor(a,b);
-    cout << "Después de modificarPorValor, valor de a,b: " << a << "," << b << endl;
+    cout << "\nLlamando a swapPorValor(a)..." << endl;
+    swapPorValor(a, b);
+    cout << "Después de swapPorValor, valor de a,b: " << a << " , " << b << endl;
 
-    cout << "\nLlamando a modificarPorReferencia(b)..." << endl;
-    modificarPorReferencia(a,b);
-    cout << "Después de modificarPorReferencia, valor de b: " << b << endl;
+    cout << "\nLlamando a swapPorReferencia(b)..." << endl;
+    swapPorReferencia(a, b);
+    cout << "Después de swapPorReferencia, valor de a,b: " << a <<" , " <<b << endl;
 
-    cout << "\nLlamando a modificarPorPuntero(&c)..." << endl;
-    modificarPorPuntero(&a,&b);
-    cout << "Después de modificarPorPuntero, valor de c: " << a << endl;
+    cout << "\nLlamando a swapPorPuntero(&c)..." << endl;
+    swapPorPuntero(&a, &b);
+    cout << "Después de swapPorPuntero, valor de a: " << a << " y valor modificado de b: "<< b << endl;
 
     return 0;
 }
 ```
+
