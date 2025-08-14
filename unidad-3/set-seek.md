@@ -77,3 +77,16 @@ int main() {
 }
 ```
 
+### Actividad 04
+
+Realizar los siguientes experimentos en el código anterior
+
+**Experimento 1:** sale una excepción ya que esta intentando modificar el área de solo lectura, en este caso, la función main.
+
+**Experimento 2:** No se puede hacer tampoco ya que intenta modificar una constante
+
+**Experimento 3:** al inicio la variable inicializada se ve con el número asignado y la no inicializada tiene un 0. Después la variable inicializada cambia de número al igual que la inicializada.
+
+**Experimento 4:** No se pudo modificar la variable dibido a que esta indicada como una variable estatica. Por ende no se puede acceder para escritura ni para lectura.
+
+**Experimento 5:** (TERMINAR)
