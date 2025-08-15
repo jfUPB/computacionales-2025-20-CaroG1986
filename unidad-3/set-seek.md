@@ -87,6 +87,137 @@ Realizar los siguientes experimentos en el código anterior
 
 **Experimento 3:** al inicio la variable inicializada se ve con el número asignado y la no inicializada tiene un 0. Después la variable inicializada cambia de número al igual que la inicializada.
 
-**Experimento 4:** No se pudo modificar la variable dibido a que esta indicada como una variable estatica. Por ende no se puede acceder para escritura ni para lectura.
+**Experimento 4:** No se pudo modificar la variable debido a que esta indicada como una variable estatica. Por ende no se puede acceder para escritura ni para lectura.
 
-**Experimento 5:** (TERMINAR)
+**Experimento 5:** La variable estatica si aumento, an cambio la no estatica siempre fue 100. Esto puede ser debido a que la variable no estatica se mantiene solo en el espacio de variables locales.
+
+**Experimento 6:** En esta parte del código se usa new y delete para generar y liberar espacio en la memoria del Heap.
+
+### Actividad 05
+
+Según el siguiente código: 🧃
+
+``` python
+#include <iostream>
+
+int contador_global = 100;
+
+void ejecutarContador() {
+    static int contador_estatico = 0;
+    contador_estatico++;
+    std::cout << "  -> Llamada a ejecutarContador. Valor de contador_estatico: " << contador_estatico << std::endl;
+}
+
+void sumaPorValor(int a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorValor, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorReferencia(int& a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorReferencia, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorPuntero(int* a) {
+    *a = *a + 10;
+    std::cout << "  -> Dentro de sumaPorPuntero, '*a' ahora es: " << *a << std::endl;
+}
+
+int main() {
+    int val_A = 20;
+    int val_B = 20;
+    int val_C = 20;
+
+    std::cout << "--- Experimento con paso de parámetros ---" << std::endl;
+    std::cout << "Valor inicial de val_A: " << val_A << std::endl;
+    sumaPorValor(val_A);
+    std::cout << "Valor final de val_A: " << val_A << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_B: " << val_B << std::endl;
+    sumaPorReferencia(val_B);
+    std::cout << "Valor final de val_B: " << val_B << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_C: " << val_C << std::endl;
+    sumaPorPuntero(&val_C);
+    std::cout << "Valor final de val_C: " << val_C << std::endl << std::endl;
+
+    std::cout << "--- Experimento con variables estáticas ---" << std::endl;
+    ejecutarContador();
+    ejecutarContador();
+    ejecutarContador();
+
+    return 0;
+}
+```
+
+**¿Cuál será la salida final en la consola de este programa?**
+
+Para mi al final el programa se vería como uno de los primeros ejercicios que hicimos, en donde veíamos como se comportaban las variables según el parametro que se llamara en la función. Por ejemplo, en el primer que es por valor no cambiaria la viariable original, sin embargo en los otros dos el valor original si cambiará. Por otro lado el valor de la variable estatica tambien va a cambiar con la función ejecutar contador.
+
+**Escribe la salida completa que esperas.**
+
+Valor original de A: 20
+
+Dentro de sumar por valor: 30
+
+Valor final de A: 20
+
+Valor original de B: 20
+
+Dentro de sumar por referencia: 30
+
+Valor final de B: 30
+
+Valor original de C: 20
+
+Dentro de sumar por puntero: 30
+
+Valor final de C: 30
+
+VARIABLE_ESTATICA=1
+
+VARIABLE_ESTATICA=2
+
+VARIABLE_ESTATICA=3
+
+**Dibuja un mapa de memoria conceptual de este programa justo antes de que main finalice.**
+
+<img width="438" height="628" alt="image" src="https://github.com/user-attachments/assets/fd747775-700a-4381-9351-126482ff5e38" />
+
+**Compara la salida real con tu predicción**
+
+La salida fue la siguiente:
+
+<img width="739" height="690" alt="image" src="https://github.com/user-attachments/assets/7619e094-13be-42fb-b9ce-cfe201dfb753" />
+
+Al compararlas siento que no hay mucha diferencia en cuanto los valores esperados, creo que la diferencia principal se encuentra en la presentación, sin embargo se podría decir que mi predicciónn fue acertada. Entonces como un analisis más detallado tenemos que:
+
+Primero en suma por valor
+--------------------------------------------------------------
+Antes:
+
+<img width="554" height="61" alt="image" src="https://github.com/user-attachments/assets/0a115158-e41a-4b94-ab0e-1fcabb678dc9" />
+
+Despúes:
+
+<img width="555" height="108" alt="image" src="https://github.com/user-attachments/assets/e30af366-4e89-4f65-85f3-d395ec9142bb" />
+
+Ahora suma por referencia
+-------------------
+Antes:
+
+<img width="567" height="87" alt="image" src="https://github.com/user-attachments/assets/e259b89f-a2b2-44a1-841d-1d87093a6186" />
+
+Despúes:
+
+<img width="573" height="121" alt="image" src="https://github.com/user-attachments/assets/550adfdc-317b-4a8c-8bc4-da96fa9810fb" />
+
+Por último, suma por puntero
+-----------------------
+Antes:
+
+<img width="550" height="97" alt="image" src="https://github.com/user-attachments/assets/ae7fc64c-48e5-431d-a2c7-0e5fd8b6dd41" />
+
+Despúes:
+
+<img width="557" height="114" alt="image" src="https://github.com/user-attachments/assets/d3ac7885-886c-48e7-9623-6ed007486a16" />
