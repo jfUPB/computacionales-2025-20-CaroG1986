@@ -192,8 +192,8 @@ La salida fue la siguiente:
 
 Al compararlas siento que no hay mucha diferencia en cuanto los valores esperados, creo que la diferencia principal se encuentra en la presentación, sin embargo se podría decir que mi predicciónn fue acertada. Entonces como un analisis más detallado tenemos que:
 
-Primero en suma por valor
---------------------------------------------------------------
+**Primero en suma por valor**
+
 Antes:
 
 <img width="554" height="61" alt="image" src="https://github.com/user-attachments/assets/0a115158-e41a-4b94-ab0e-1fcabb678dc9" />
@@ -202,8 +202,8 @@ Despúes:
 
 <img width="555" height="108" alt="image" src="https://github.com/user-attachments/assets/e30af366-4e89-4f65-85f3-d395ec9142bb" />
 
-Ahora suma por referencia
--------------------
+**Ahora suma por referencia**
+
 Antes:
 
 <img width="567" height="87" alt="image" src="https://github.com/user-attachments/assets/e259b89f-a2b2-44a1-841d-1d87093a6186" />
@@ -212,8 +212,8 @@ Despúes:
 
 <img width="573" height="121" alt="image" src="https://github.com/user-attachments/assets/550adfdc-317b-4a8c-8bc4-da96fa9810fb" />
 
-Por último, suma por puntero
------------------------
+**Por último, suma por puntero**
+
 Antes:
 
 <img width="550" height="97" alt="image" src="https://github.com/user-attachments/assets/ae7fc64c-48e5-431d-a2c7-0e5fd8b6dd41" />
@@ -221,3 +221,11 @@ Antes:
 Despúes:
 
 <img width="557" height="114" alt="image" src="https://github.com/user-attachments/assets/d3ac7885-886c-48e7-9623-6ed007486a16" />
+
+**Describe qué demuestran estas capturas sobre la diferencia entre los diferentes tipos de paso por parámetros analizados.**
+
+Estas capturas demuestran la importancia que saber que llamar para poder modificar una variable. Iniciando por el valor, al llamarlo solo se va a modificar la variable local que esta en la función sumaPorValor, pero al usar la suma por referencia esta llama a la variable val_B directamente como si lo hiciera con un apodo, y al usar el puntero se llama a modificar lo que este en la dirección de memoria de la variable val_C, cambiado en si el valor de la variable.
+
+**Explica con tus propias palabras el comportamiento de contador_estatico. ¿Por qué “recuerda” su valor entre llamadas a la función ejecutarContador? ¿En qué se diferencia de una variable local normal?**
+
+Este lo recuerda ya que esta en la sección de memoria de variables globales y estaticas, las cuales almacenan su información sin depender de una función, es decir, que su memoria no se borra despúes. Es por esto que almacena la información del último cambio que se le fue realizado.
