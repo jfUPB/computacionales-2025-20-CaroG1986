@@ -5,7 +5,6 @@
 Código para ofApp.h:
 
 ``` cpp
-ofApp.h
 #pragma once
 #include "ofMain.h"
 
@@ -60,10 +59,9 @@ BrushQueue::~BrushQueue() {
 void BrushQueue::enqueue(float x, float y, float radius, ofColor color, float opacity) {
 	// TODO: crear un nuevo nodo y agregarlo al final de la cola.
 	// Si la cola supera `maxSize`, eliminar el nodo más antiguo con `dequeue()`.
-	Node * newNode = new Node(x, y, radius, color, opacity);
-
-	if (rear == nullptr) { // cola vacía
-		front = rear = newNode;
+	Node * newNode = new Node(x,y,radius,color,opacity);
+	if (rear == nullptr) {
+		rear = front = newNode;
 	} else {
 		rear->next = newNode;
 		rear = newNode;
@@ -78,18 +76,17 @@ void BrushQueue::enqueue(float x, float y, float radius, ofColor color, float op
 // Implementa aquí `dequeue()`
 void BrushQueue::dequeue() {
 	// TODO: eliminar el nodo más antiguo si la cola no está vacía.
-	if (front== nullptr) return;
+	if (front == nullptr) return;
+
+		Node * temp = front;
+	   front = front->next; 
+		delete temp;
 	
-	
-    Node * temp = front;
-	front = front->next;
-	delete temp;
 	size--;
 
 	if (front == nullptr) {
 		rear = nullptr;
 	}
-
 }
 
 // Implementa aquí `clear()`
@@ -108,8 +105,7 @@ void BrushQueue::clear() {
 // Implementa aquí `isEmpty()`
 bool BrushQueue::isEmpty() {
 	// TODO: retornar si la cola está vacía.
-	return front == nullptr; 
-
+	return front == nullptr;
 }
 
 class ofApp : public ofBaseApp {
@@ -131,7 +127,6 @@ public:
 Código para ofApp.cpp:
 
 ``` cpp
-ofApp.cpp
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -144,17 +139,21 @@ void ofApp::update() {
 	backgroundHue += 0.2;
 	if (backgroundHue > 255) backgroundHue = 0;
 
+	int index = 0;
+
 	// TODO: agregar un nuevo trazo si el mouse está presionado.
 	// Usa strokes.enqueue(x, y, radius, color, opacity);
 
-	if (ofGetMousePressed()) {
-		float x = ofGetMouseX();
+	if (ofGetMousePressed())
+	{
+	
+	    float x = ofGetMouseX();
 		float y = ofGetMouseY();
 		int radius = ofRandom(5, 15);
-		ofColor color = ofColor::fromHsb(ofRandom(0, 255), 220, 255);
+		ofColor color = ofColor::fromHsb(ofRandom(0,255), 200, 255);
 		float opacity = 255;
-
-		strokes.enqueue(x, y, radius, color, opacity);
+	 
+	    strokes.enqueue(x, y, radius, color, opacity);
 	}
 }
 
@@ -168,15 +167,14 @@ void ofApp::draw() {
 
 	// TODO: dibujar los trazos almacenados en la cola.
 	// Recorre los nodos desde strokes.front hasta nullptr y usa ofDrawCircle().
-	Node* current = strokes.front;
+	Node * current = strokes.front;
 	int index = 0;
 
 	while (current != nullptr) {
-		float alpha = ofMap(index, 0, strokes.size - 1, 50, 255);
+		float alpha = ofMap(index++, 0, strokes.size - 1, 0, 255);
 		ofSetColor(current->color, alpha);
 		ofDrawCircle(current->x, current->y, current->radius);
 		current = current->next;
-		index++;
 	}
 	ofSetColor(255);
 	ofDrawBitmapString("maxSize = " + ofToString(strokes.maxSize), 12, 18);
@@ -194,12 +192,12 @@ void ofApp::keyPressed(int key) {
 		while (strokes.size > strokes.maxSize) {
 			strokes.dequeue();
 		}
-	}
-	else if (key == 's') {
+	} else if (key == 's') {
 		// TODO: guardar el frame actual.
-		ofSaveFrame(); 
+		ofSaveFrame();
 	}
 }
+
 
 ```
 
@@ -228,5 +226,6 @@ int main( ){
 ## Demostración:
 
 [Aquí está el video demostrativo de mi aplicación](url del video no listado en youtube)
+
 
 
