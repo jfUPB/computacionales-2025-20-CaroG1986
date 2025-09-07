@@ -122,11 +122,13 @@ public:
 	void keyPressed(int key);
 };
 
+
 ```
 
 Código para ofApp.cpp:
 
 ``` cpp
+
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -198,11 +200,12 @@ void ofApp::keyPressed(int key) {
 }
 
 
+
 ```
 
 Código para main.cpp:
 ``` cpp
-main.cpp
+
 #include "ofMain.h"
 #include "ofApp.h"
 
@@ -225,7 +228,3 @@ int main( ){
 ## Demostración:
 
 [Aquí está el video demostrativo de mi aplicación](https://youtu.be/24JaPTMxWXs)
-
-
-
-
