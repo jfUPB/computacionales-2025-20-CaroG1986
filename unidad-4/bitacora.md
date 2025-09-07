@@ -5,6 +5,7 @@
 Código para ofApp.h:
 
 ``` cpp
+
 #pragma once
 #include "ofMain.h"
 
@@ -123,6 +124,7 @@ public:
 };
 
 
+
 ```
 
 Código para ofApp.cpp:
@@ -201,10 +203,12 @@ void ofApp::keyPressed(int key) {
 
 
 
+
 ```
 
 Código para main.cpp:
 ``` cpp
+
 
 #include "ofMain.h"
 #include "ofApp.h"
@@ -223,8 +227,10 @@ int main( ){
 	ofRunMainLoop();
 
 }
+
 ```
 
 ## Demostración:
+
 
 [Aquí está el video demostrativo de mi aplicación](https://youtu.be/24JaPTMxWXs)
