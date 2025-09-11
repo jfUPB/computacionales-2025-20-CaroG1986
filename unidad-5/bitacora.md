@@ -1,8 +1,8 @@
-# Bitácora de aprendizaje de la unidad 5
+# Bitácora de aprendizaje de la unidad 5 
 
-## 1.  **Diagnóstico inicial**
+## 1.  **Diagnóstico inicial** 🧘‍♀️
 
-### Parte 1
+### Parte 1 🕯️
 
 **¿Qué es el encapsulamiento para ti? Describe una situación en la que te haya sido útil o donde hayas visto su importancia.**
 
@@ -16,7 +16,7 @@ La herencia es un proceso en el cual clases hijas heredan las caracteristicas de
 
 El polimorfismo es una caracteríatica que permite a alguna cosa ser capaz de adaptarse dependindo de la situación en la que este, algo así como un camaleon que se adapta según el ambiente. Cuando se describe un código como polimórfico normalmente nos referimos a que este es tan general que se puede adaptar, usando en mismo código para distintos resultados.
 
-### Parte 2
+### Parte 2 🕯️
 
 **Encapsulamiento**
 > Señala una línea de código que sea un ejemplo claro de encapsulamiento y explica por qué lo es.
@@ -30,7 +30,7 @@ El polimorfismo es una caracteríatica que permite a alguna cosa ser capaz de ad
 Este línea es claramente un encapsulamiento, debido a que se ve el uso de get-set y con esto se llama los datos que definen a "Nombre" y como van a estar representados para el resto del código.
 >¿Por qué crees que el campo nombre es private pero la propiedad Nombre es public? ¿Qué problema se evita con esto?
 
-Creo que la razón por la que el campo de nombre es private es porque este debe estar definido solo en la clase que la contiene y no deberia editarse fuera de este segmento, pero la propiedad Nombre es public para que use e muestre el nombre dependiendo de la clase en la que este, básicamente es gracias a esto que sin importar el caso da el nombre de la figura actual.
+Creo que la razón por la que el campo de nombre es private es porque este debe estar definido solo en la clase que la contiene y no deberia editarse fuera de este segmento, pero la propiedad Nombre es public para que use y muestre el nombre dependiendo de la clase en la que este, básicamente es gracias a esto que sin importar el caso da el nombre de la figura actual.
 
 **Herencia**
 >¿Cómo se evidencia la herencia en la clase Circulo?
@@ -65,10 +65,12 @@ Además del radio se almacena la variable de Nombre, la cual es un atributo here
 ```
  la verdad no estoy muy segura del funcionamiento pero supongo que dependiendo de la figura actual que este llamando, se usa el método "Dibujar", es decir, las figuras ya sean circulo o cuadrado toman el lugar de la variable fig en el for each.
 
- ### Parte 3 
+ ### Parte 3 🕯️
 
  **Memoria y herencia: cuando creas un objeto Rectangulo, este tiene Base, Altura y también Nombre. ¿Cómo te imaginas que se organizan esos tres datos en la memoria del computador para formar un solo objeto?**
- 
+
+ <img width="407" height="244" alt="image" src="https://github.com/user-attachments/assets/20f7a29f-24d4-44ea-84bc-beaa40c81fa7" />
+
 **El mecanismo del polimorfismo: pensemos de nuevo en la llamada fig.Dibujar(). El compilador solo sabe que fig es una Figura. ¿Cómo decide el programa, mientras se está ejecutando, si debe llamar al Dibujar del Circulo o al del Rectangulo? Lanza algunas ideas o hipótesis.**
 
 Creo que esto se debe a la siguiente parte del código 
@@ -82,15 +84,18 @@ Creo que esto se debe a la siguiente parte del código
 
 **La barrera del encapsulamiento: ¿Cómo crees que el compilador logra que no puedas acceder a un miembro private desde fuera de la clase? ¿Es algo que se revisa cuando escribes el código, o es una protección que existe mientras el programa se ejecuta? ¿Por qué piensas eso?**
 
-### Parte 4
-
-
+Creo que no se puede acceder ya que es una protección que se revisa cuando se escribe el código, ya que si al momento de escribir el código si se intenta llamar a una variable privada por fuera de donde esta contenida empiezan a salir errores.
  
 ## 2.  **La pregunta inicial**
+
+¿Como funciona el encapsulamiento dentro del programa?
 
 ## 3.  **Registro de exploración:** 
 > Aquí documentas cada ciclo de pregunta -> hipótesis -> experimento -> hallazgo -> reflexión.
 > Debe ser rico en evidencia visual (código, capturas del depurador con anotaciones, diagramas).
+
+### Actividad 2
+
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
