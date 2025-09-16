@@ -88,7 +88,7 @@ Creo que no se puede acceder ya que es una protección que se revisa cuando se e
  
 ## 2.  **La pregunta inicial**
 
-¿Cómo impelmenta C++ el encapsulamiento a nivel copilador y memoria?
+¿Cómo implementa C++ el encapsulamiento a nivel copilador y memoria?
 
 ## 3.  **Registro de exploración:** 
 > Aquí documentas cada ciclo de pregunta -> hipótesis -> experimento -> hallazgo -> reflexión.
@@ -121,7 +121,7 @@ Además si se revisa dentro de particula[i] (es decir el puntero que apunta a la
 
 <img width="1919" height="1020" alt="image" src="https://github.com/user-attachments/assets/e21e2dab-6330-4186-b53c-a156def3eac1" />
 
-Al momento de hacer el experimento jon clase de explosión circular esto es lo que me parece en la memoria, en realidad no comprendo muy bien el por qué sale como signos de interrogación, A pesar de ella tener una partícula creada como se puede ver en size=1. 
+Al momento de hacer el experimento con clase de explosión circular esto es lo que me parece en la memoria, en realidad no comprendo muy bien el por qué sale como signos de interrogación, A pesar de ella tener una partícula creada como se puede ver en size=1. 
 
 **Captura la _vtable de un objeto CircularExplosion, pega la imagen en tu bitácora, pero observa detenidamente la tabla de funciones. ¿Qué puedes observar?**
 
@@ -222,12 +222,35 @@ Que en este caso sí fue posible llamar a las variables debido a que no se llama
 
 **En tus palabras, ¿Qué es el encapsulamiento? ¿Por qué es importante?**
 
+El encapsulamiento es el protegar las variables que se usan en determinada clase o método. Este es importante ya que permite generar cierto nivel de protección a un dato para que no se pueda llamar o cambiar en cualquier parte del código.
+
 ### Actividad 05
+
+**captura de nuevo la memoria que ocupa el objeto CircularExplosion compara la jerarquía de clases con los campos en memoria del objeto. ¿Qué puedes observar? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?** 
+
+
+
+**¿Cómo se implementa la herencia en C++?**
+
+La herencia en c++ se implementa
+
+**C++ permite hacer algo que C# no: herencia múltiple. Realiza un experimento que te permita ver cómo se objeto en memoria cuya clase base tiene herencia múltiple.**
 
 ### Actividad 06
 
+**Realiza un dibujo con el cuál expliques cómo se implementa el polimorfismo en tiempo de ejecución. Utiliza el concepto de métodos virtuales y la tabla de funciones virtuales. ¿Qué puedes concluir?**
+
+**¿Qué relación existe entre los métodos virtuales y el polimorfismo?**
+
+Estos se relacionan ya que en estos métodos es posible ver cuales vienen directamente de la clase base y cuales métodos estan sobrescritos, lo cual significa que estos métodos se adaptan de cierta forma dependiendo de la clase en donde se esten utilizando. Por ejemplo, se ve como métodos como obtener el color vienen directamente de la clase base particula, sin embargo en casos como el draw se puede ver como estos métodos estan sobre escritos para ambas clases de explosión. 
+
 ### Actividad 07
 
+**¿Cómo y por qué de la implementación de cada una de las extensiones solicitadas al caso de estudio?**
+
+**¿Cómo y por qué de la implementación de los conceptos de encapsulamiento, herencia y polimorfismo en tu código?**
+
+**Explica cómo verificaste que cada una de las extensiones funciona correctamente, muestra capturas de pantalla del depurador donde evidencias lo anterior, en particular el polimorfismo en tiempo de ejecución.**
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
