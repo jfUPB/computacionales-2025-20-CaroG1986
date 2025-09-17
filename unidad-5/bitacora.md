@@ -123,6 +123,10 @@ Además si se revisa dentro de particula[i] (es decir el puntero que apunta a la
 
 Al momento de hacer el experimento con clase de explosión circular esto es lo que me parece en la memoria, en realidad no comprendo muy bien el por qué sale como signos de interrogación, A pesar de ella tener una partícula creada como se puede ver en size=1. 
 
+<img width="1919" height="1021" alt="image" src="https://github.com/user-attachments/assets/f1e29cdc-cee5-4f7b-be66-7148287b1597" />
+
+Entonces volví a hacer el experimento ahora verificando que si esté bien seleccionado y eso es lo que me aparece en la memoria.
+
 **Captura la _vtable de un objeto CircularExplosion, pega la imagen en tu bitácora, pero observa detenidamente la tabla de funciones. ¿Qué puedes observar?**
 
 <img width="1312" height="411" alt="image" src="https://github.com/user-attachments/assets/0ef00441-7ef2-4b7a-ae26-29c46d63e256" />
@@ -224,21 +228,111 @@ Que en este caso sí fue posible llamar a las variables debido a que no se llama
 
 El encapsulamiento es el protegar las variables que se usan en determinada clase o método. Este es importante ya que permite generar cierto nivel de protección a un dato para que no se pueda llamar o cambiar en cualquier parte del código.
 
+>Ahora hice otro experimento para ver más a fondo el concepto del encapsulamiento
+>```c++
+>#include <iostream>
+>using namespace std;
+>
+>class Persona {
+>private:
+>    int edad;       // privado
+>protected:
+>    double altura;  // protegido
+>public:
+>    string nombre;  // público
+>
+>    Persona(string n, int e, double a)
+>        : nombre(n), edad(e), altura(a) {}
+>
+>    // Métodos públicos para acceder a lo encapsulado
+>    int getEdad() const { return edad; }
+>    double getAltura() const { return altura; }
+>    void mostrarInfo() const {
+>        cout << "Nombre: " << nombre
+>             << " | Edad: " << edad
+>             << " | Altura: " << altura << endl;
+>    }
+>};
+>
+>int main() {
+>    Persona p("Carolina", 25, 1.68);
+>    p.mostrarInfo();
+>
+>    // Intenta acceder directamente (NO compila):
+>    // cout << p.edad;    // ❌ error: edad es privado
+>    // cout << p.altura;  // ❌ error: altura es protegido
+>
+>    return 0;
+>}
+>```
+><img width="1880" height="490" alt="image" src="https://github.com/user-attachments/assets/36b7c46b-d013-4e68-8caf-0cff8ccaa50d" />
+
+
 ### Actividad 05
 
 **captura de nuevo la memoria que ocupa el objeto CircularExplosion compara la jerarquía de clases con los campos en memoria del objeto. ¿Qué puedes observar? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?** 
 
+<img width="1313" height="519" alt="image" src="https://github.com/user-attachments/assets/2dabfe0b-a9b6-4283-939b-28f31528c34e" />
 
+Cómo se ve es igual a lo que mencioné antes de que aquí se ven los métodos que está heredando la explosión circular ya sea desde la base directamente o los que sobre escribió para poder cambiar ciertos aspectos.
 
 **¿Cómo se implementa la herencia en C++?**
 
-La herencia en c++ se implementa
+La herencia en c++ se implementa mencioné antes por medio de la declaración de la herencia y también de lo que se ve en cuanto los métodos de atributos que tiene cada clase. Por ejemplo, qué es lo que dice el constructor de algo respecto al constructor de la base o los métodos que hayan y como estos se pueden sobreescribir para así lograr el polimorfismo. Y al momento de revisarlo en la memoria se puede ver en los métodos virtuales donde se ve con claridad que los métodos salen originalmente de una base y también donde se puede ver la jerarquía de las clases
 
 **C++ permite hacer algo que C# no: herencia múltiple. Realiza un experimento que te permita ver cómo se objeto en memoria cuya clase base tiene herencia múltiple.**
+
+``` c++
+#include <iostream>
+using namespace std;
+
+class Motor {
+public:
+    Motor() { cout << "Motor construido\n"; }
+    void encender() { cout << "Motor encendido\n"; }
+    virtual void info() { cout << "Soy un Motor\n"; }
+};
+
+class Ruedas {
+public:
+    Ruedas() { cout << "Ruedas construidas\n"; }
+    void rodar() { cout << "Las ruedas están rodando\n"; }
+    virtual void info() { cout << "Tengo Ruedas\n"; }
+};
+class Coche : public Motor, public Ruedas {
+public:
+    Coche() { cout << "Coche construido\n"; }
+    void info() override {
+        cout << "Soy un Coche (Motor + Ruedas)\n";
+    }
+};
+int main() {
+    Coche miCoche;
+
+    miCoche.encender();  // viene de Motor
+    miCoche.rodar();     // viene de Ruedas
+    miCoche.info();      // método sobreescrito en Coche
+
+    // Polimorfismo desde punteros
+    Motor* ptrMotor = &miCoche;
+    Ruedas* ptrRuedas = &miCoche;
+
+    cout << "\nPolimorfismo:\n";
+    ptrMotor->info();   // Llama Coche::info
+    ptrRuedas->info();  // Llama Coche::info
+
+    return 0;
+}
+```
+
+<img width="1309" height="415" alt="image" src="https://github.com/user-attachments/assets/0b6e1b7a-50e1-46ad-a9f1-44a546b05458" />
+Lo que pude ver con ese experimento es que es cierto que c++ permite realizar herencia múltiple y al ver la memoria puede identificar que ambas clases están en el mismo nivel de jerarquía, es decir,  no una sobre la otra sino que las dos son del mismo nivel.
 
 ### Actividad 06
 
 **Realiza un dibujo con el cuál expliques cómo se implementa el polimorfismo en tiempo de ejecución. Utiliza el concepto de métodos virtuales y la tabla de funciones virtuales. ¿Qué puedes concluir?**
+
+<img width="1176" height="517" alt="image" src="https://github.com/user-attachments/assets/8f9e96bf-cd2b-4a10-b9d5-626770829fcf" />
 
 **¿Qué relación existe entre los métodos virtuales y el polimorfismo?**
 
