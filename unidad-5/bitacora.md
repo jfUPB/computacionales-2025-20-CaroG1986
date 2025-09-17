@@ -266,6 +266,9 @@ El encapsulamiento es el protegar las variables que se usan en determinada clase
 >}
 >```
 ><img width="1880" height="490" alt="image" src="https://github.com/user-attachments/assets/36b7c46b-d013-4e68-8caf-0cff8ccaa50d" />
+>Cómo se puede ver dentro de la memoria se puede ver toda la información sobre la variable del nombre ya que estás pública sin embargo de la literatura a pesar de que son visibles no da más información.
+>Esto porque ahí se ve la memoria del objeto p en sí por lo que se rompe el encapsulamiento. Sin embargo si se intentará solo llamar a las variables por separado aparece un error de compilación por genética dosis se respetaría el encapsulamiento.
+>Además, también me parece interesante que en el depurador se puede ver toda la memoria pero el copilador obedece las reglas del encapsulamiento.
 
 
 ### Actividad 05
