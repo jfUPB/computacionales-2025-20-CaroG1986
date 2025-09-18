@@ -343,6 +343,7 @@ Estos se relacionan ya que en estos métodos es posible ver cuales vienen direct
 
 ### Actividad 07
 
+Para esta actividad realize dos tipos de particulas que se mueven de forma diferente, una en espiral y la otra en movimiento oscilatorio. Además realize una explosión que se ve como fuegos artificiales explotando.
 ofApp.h
 ```c++
 #pragma once
@@ -624,6 +625,25 @@ public:
 		ofPopMatrix();
 	}
 };
+//------------------------------------------------------------------
+// Explosión nueva
+//-----------------------------------------------------------------
+
+class NewExplosion : public ExplosionParticle {
+public:
+	NewExplosion(const glm::vec2 & pos, const ofColor & col)
+		: ExplosionParticle(pos, glm::vec2(0, 0), col, 1.2f, ofRandom(16, 32)) {
+		float angle = ofRandom(0, TWO_PI);
+		float speed = ofRandom(80, 200);
+		velocity = glm::vec2(cos(angle), sin(angle)) * speed;
+	}
+
+	void draw() override {
+		ofSetColor(color);
+		glm::vec2 end = position + glm::normalize(velocity) * 10;
+		ofDrawLine(position, end);
+	}
+};
 
 // -------------------------------------------------
 // ofApp: Manejo de la escena y eventos
@@ -644,6 +664,7 @@ private:
 	void createSpiralParticle();
 	void createRandomParticle();
 };
+
 ```
 ofApp.cpp 
 ```c++
@@ -668,14 +689,18 @@ void ofApp::update() {
 	for (int i = particles.size() - 1; i >= 0; i--) {
 		// Si la partícula debe explotar, generamos nuevas explosiones
 		if (particles[i]->shouldExplode()) {
-			int explosionType = (int)ofRandom(3); // 0: Circular, 1: Random, 2: Star
+			int explosionType = (int)ofRandom(4); // 0: Circular, 1: Random, 2: Star
 			int numParticles = (int)ofRandom(20, 30);
 			for (int j = 0; j < numParticles; j++) {
 				if (explosionType == 0) {
 					particles.push_back(new CircularExplosion(particles[i]->getPosition(), particles[i]->getColor()));
 				} else if (explosionType == 1) {
 					particles.push_back(new RandomExplosion(particles[i]->getPosition(), particles[i]->getColor()));
-				} else {
+				}
+				else if (explosionType == 2) {
+					particles.push_back(new NewExplosion(particles[i]->getPosition(), particles[i]->getColor()));
+				}
+				else {
 					particles.push_back(new StarExplosion(particles[i]->getPosition(), particles[i]->getColor()));
 				}
 			}
@@ -776,13 +801,60 @@ ofApp::~ofApp() {
 	}
 	particles.clear();
 }
+
 ```
-**¿Cómo y por qué de la implementación de cada una de las extensiones solicitadas al caso de estudio?**
+<img width="1028" height="821" alt="image" src="https://github.com/user-attachments/assets/b6c00e42-7641-452d-94c3-a0c5fb98a0ad" />
+
+>En fotos no se aprecia mucho pero ese es el movimiento oscilatorio.
+
+<img width="1047" height="822" alt="image" src="https://github.com/user-attachments/assets/fbd5c22f-ddef-4bd0-8dff-ecc4bbc6a122" />
+
+>En fotos tampoco se aprecia mucho pero este es en espiral
+
+<img width="1023" height="813" alt="image" src="https://github.com/user-attachments/assets/6d8faef6-f669-4507-b53e-733af672606c" />
+
+>Aquí se alcanza a ver la explosión con lineas
 
 **¿Cómo y por qué de la implementación de los conceptos de encapsulamiento, herencia y polimorfismo en tu código?**
 
+1. El más sencillo de ver creo que es la herencia, porque como se puede apreciar, es gracias a esta que en lugar de escribir todo de cero ya había una base con la que trabajar. Como el en caso de crear nuevos movimientos (donde simplemente busque las formulas de dichos movimientos y las aplique en el código) o de crear otra explosión (esta fue más sencilla porque solo cambie la forma)
+2. Después el polimorfismo que va muy de la mano con la herencia. Este se ve pr ejemplo en los métodos que se usan en cada clase, que gracias a que ya estan "prefabricados" es más fácil después adaptarlos según la situación.
+3. Finalmente el encapsulamiento, me di cuenta que lo más importante es fijarse donde se inician las variables y si son publicas o no, ya que muchas veces me lleve la sorpresa de no poder utilizarlas después porque estaban mal declaradas. Este creo que fue escencial ya que como muchas variables se llaman iguales, si no quedaran solo en un método se confundirian con el resto de las varables y sería un gran desorden.
+
 **Explica cómo verificaste que cada una de las extensiones funciona correctamente, muestra capturas de pantalla del depurador donde evidencias lo anterior, en particular el polimorfismo en tiempo de ejecución.**
+
+>No estoy segura si estas capturas son las que piden pero aquí estan:
+>Para la explosión de lineas
+
+<img width="1919" height="1023" alt="image" src="https://github.com/user-attachments/assets/c0482b5d-89ab-4103-b72b-e8f7bad9fdce" />
+
+>Para la particula en espiral
+
+<img width="1919" height="1017" alt="image" src="https://github.com/user-attachments/assets/12e2f3bf-0758-4e9b-9526-aedac926f5f8" />
+
+>Para la particula en movimiento oscilatorio
+
+<img width="1919" height="976" alt="image" src="https://github.com/user-attachments/assets/c0b795aa-fe9d-4406-a97e-c5ae3546a745" />
+
+Basicamente, para verificar cada que agregaba algo hacia una depuración y en caso de querer cambiar algo lo modificaba.
+
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
 > Esta sección es OBLIGATORIA y central para tu evaluación
+
+**Mi nota propuesta es: 4.0**
+
+***justificación**
+
+Creo que merezco esta nota porque aunque segui todad las actividades, tal vez pude profundizar más y hacer más experimentos extra (en este caso solo hice uno), además si bien yo busque idearmelas solita en la mayoria del trabajo, cuando pasaba algo que en serio no comprendia recurria a la IA para que me explique que estaba pasando, así que aunque disminui su uso siento que todavía me falta más. 
+
+**Mapeo de evidencias**
+
+**1. profundidad de indagación:** *Bien* -> creo que si fui capaz de en algunos aspectos ir más allá de lo que había en las actividades, además de intentar en lo posible no quedarme con dudas, sino búscar un poco más. Esto creo que se puede ver en el momento en en que investigue como se ve el encapsulamiento en la memoria y cuando es que este se aplica.
+
+**2. esfuerzo cognitivo y experimentación:** *media* -> me hubiera gustado inventame yo mis propios experimentos para comprender mejor, sin embargo intente en la medida de lo posible profundizar en cada experimento.
+
+**3.Calidad de análisis y reflexión:** *Bien** -> siento que en esto he mejorado mucho porque hice todo lo posible por comprender en caso de error. Por ejemplo cuando al examinar la memoria de las particulas tuve un error y estuve un rato moviendo cosas para poder ver bien lo que pedía el experiemento.
+
+**4.apropiación y articulación de conceptos:** *media* -> No sé si logre hacer de este algo más personal, sin embargo si siento que mi comprensión sobre los tres temas planteados si mejoró, debido a que entes solo había visto los temas de una forma más sencilla o superficial.
