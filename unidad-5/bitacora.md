@@ -69,6 +69,9 @@ Además del radio se almacena la variable de Nombre, la cual es un atributo here
 
  **Memoria y herencia: cuando creas un objeto Rectangulo, este tiene Base, Altura y también Nombre. ¿Cómo te imaginas que se organizan esos tres datos en la memoria del computador para formar un solo objeto?**
 
+<a name="exp1"></a>
+experimento con la memoria:
+
  <img width="407" height="244" alt="image" src="https://github.com/user-attachments/assets/20f7a29f-24d4-44ea-84bc-beaa40c81fa7" />
 
 **El mecanismo del polimorfismo: pensemos de nuevo en la llamada fig.Dibujar(). El compilador solo sabe que fig es una Figura. ¿Cómo decide el programa, mientras se está ejecutando, si debe llamar al Dibujar del Circulo o al del Rectangulo? Lanza algunas ideas o hipótesis.**
@@ -855,6 +858,6 @@ Creo que merezco esta nota porque aunque segui todad las actividades, tal vez pu
 
 **2. esfuerzo cognitivo y experimentación:** *media* -> me hubiera gustado inventame yo mis propios experimentos para comprender mejor, sin embargo intente en la medida de lo posible profundizar en cada experimento.
 
-**3.Calidad de análisis y reflexión:** *Bien** -> siento que en esto he mejorado mucho porque hice todo lo posible por comprender en caso de error. Por ejemplo cuando al examinar la memoria de las particulas tuve un error y estuve un rato moviendo cosas para poder ver bien lo que pedía el experiemento.
+**3.Calidad de análisis y reflexión:** *Bien** -> siento que en esto he mejorado mucho porque hice todo lo posible por comprender en caso de error. Por ejemplo cuando al examinar la memoria de las particulas tuve un error y estuve un rato moviendo cosas para poder ver bien lo que pedía el experiemento. Por ejemplo el [experimento1](#exp1) indica que... porque
 
 **4.apropiación y articulación de conceptos:** *media* -> No sé si logre hacer de este algo más personal, sin embargo si siento que mi comprensión sobre los tres temas planteados si mejoró, debido a que entes solo había visto los temas de una forma más sencilla o superficial.
