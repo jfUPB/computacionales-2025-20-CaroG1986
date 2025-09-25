@@ -90,11 +90,17 @@ Creo que lo que ocurre al presionar las teclas es que el método notify informa 
 
 **Explica con tus propias palabras el propósito del patrón Observer. ¿Qué problema resuelve?**
 
-
+El patrón observer se implementa por medio del polimorfismo, permitiendo que otras clases, las que serían entonces los observadores concretos, se "suscriban" a una clase sujeto, en otras palabras, es como si estuvieran suscritos a un periodico o una plataforma de noticias y les llegaran notificaciones cada vez que sale un nuevo reporte. Esto permite que cada uno de los observadores concretos se comporten dependiendo de la información que llegue del sujeto. Si se piensa de una forma más cotidiana, es como cuando una noticia causa histeria colectiva, afectado el comportamiento de las personas, y este ejemplo lo veo como que la información que llega permite a los observadores definir como se van a comportar respecto al mouse. 
 
 **Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**
 
+<img width="593" height="577" alt="image" src="https://github.com/user-attachments/assets/ac79e72f-9345-4fa5-b950-2be6167ef1eb" />
+
+Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, que son algo así como el sujeto y el sujeto concreto respectivamente, son los politicos y medios de comunicación, mientras que observer y particle, que son el observador y el observador concreto, son todos aquellos que recicen dicha información.
+
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
+
+Ejemplo con la tecla 'a'
 
 **¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.**
 
