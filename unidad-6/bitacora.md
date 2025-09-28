@@ -101,6 +101,8 @@ Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, q
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
 
 Ejemplo con la tecla 'a'
+<img width="1138" height="656" alt="image" src="https://github.com/user-attachments/assets/d1752a97-e5db-4007-9621-420cc8e2f9de" />
+
 
 **¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.**
 
