@@ -101,20 +101,90 @@ Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, q
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
 
 Ejemplo con la tecla 'a'
+> Primero hice un diagrama yo con como me imaginaba que funcionaba la secuancia en ste evento 
 <img width="1138" height="656" alt="image" src="https://github.com/user-attachments/assets/d1752a97-e5db-4007-9621-420cc8e2f9de" />
 
+>Depués le dije a chat gpt que lo hiciera y lo pase a mermeid para ver que tan diferente era
+<img width="1366" height="800" alt="image" src="https://github.com/user-attachments/assets/1566a2bc-db07-4163-beca-4ebea3c5b6b8" />
+
+Con este experimiento siento que si logre comprender muyr bien la secuencia, es cierto que hay algunos detalles diferentes, pero en terminos generales ambos dicen prácticamante lo mismo y siguen el mismo "flujo"
 
 **¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.**
+
+Yo creo que las ventajas es que el que las particulas sean observadores significa que estas simplemente reciben notificaciones de eventos, por lo que no es necesario ir particula por particula revisando su comportamiento, esto significa que para agregar algo despúes al programa esto sería beneficioso y más sencillo en el caso de trabajar en un equipo donde cada persona haga algo por separado.
 
 ## Actividad 03
 
 **Explica con tus propias palabras el propósito del patrón Factory Method (o Simple Factory, en este caso). ¿Qué problema principal aborda en la creación de objetos?**
 
+Yo diría que el proposito principal de un Factory Method es tener un lugar donde esten organizadas las instancias de los objetos que sean necesarios, ya que así permite que si se quiere modificar por ejemplo la camtidad que es creada en el método setup esto se pueda hacer sin necesidad de hacer cambios en la particula como tal, ya que estas van a seguir estando compuesta spor la smismas variables. Básicamente Hace más fácil el proceso de creación de objetos isn tener que estar llamado en otras partes new object(). 
+
 **¿Qué ventajas aporta el uso de ParticleFactory en ofApp::setup en comparación con instanciar y configurar las partículas directamente allí? Piensa en términos de organización del código (SRP - Single Responsibility Principle), legibilidad y facilidad para añadir nuevos tipos de partículas en el futuro.**
+
+Es lo que estaba mencionando en el punto anterior. La verdad al ver esta funión setup siento que es mucho más simple y leible a comparación de si tuviera que instanciar cada particula en esta, teniendo que asignar en el setup las características de cada una. Así como esta el método se ve más corte, sencillo y no hay necesidad de estar buscando entre el código para cambiarle algún detalle al programa, si quiero cambiar la cantidad que se instancia voy a setuo y si quiere cambiar algo del color o tamaño voy a Factory.
 
 **Imagina que quieres añadir un nuevo tipo de partícula llamada "black_hole" que tiene tamaño grande, color negro y velocidad muy lenta. Describe los pasos que necesitarías seguir para implementar esto utilizando la ParticleFactory existente. ¿Tendrías que modificar ofApp::setup? ¿Por qué sí o por qué no?**
 
+<img width="1024" height="756" alt="image" src="https://github.com/user-attachments/assets/157cd0e5-72c5-4937-ab63-d8ca7b360dea" />
+
+Hice el ejemplo para ilustrar mejor esta parte (es blanco porque en fondo negro no se ve), básicamente lo que hice fue en la parte de ParticleFactory le agrege un nuevo tipo de particula, justo así: 
+
+``` c++
+Particle * ParticleFactory::createParticle(const std::string & type) {
+	Particle * particle = new Particle();
+
+	if (type == "star") {
+		particle->size = ofRandom(2.0f, 4.0f);
+		particle->color = ofColor(255, 0, 0);
+	} else if (type == "shooting_star") {
+		particle->size = ofRandom(3.0f, 6.0f);
+		particle->color = ofColor(0, 255, 0);
+		particle->velocity *= 3.0f;
+	} else if (type == "planet") {
+		particle->size = ofRandom(5.0f, 8.0f);
+		particle->color = ofColor(0, 0, 255);
+	} else if (type == "black_hole") {
+		particle->size = 100.0f;
+		particle->color = ofColor(255, 255, 255);
+		particle->velocity /= 5.0f;
+	}  
+
+	return particle;
+}
+```
+Después de describirlo y darle su nombre y caracteristicas simplemente en el setup (que si, si es necesario modificarlo) le agrege que creara una de esas particulas. Justo así:
+
+```c++
+void ofApp::setup() {
+	ofBackground(0);
+	particles.reserve(100 + 5 + 10);
+
+	for (int i = 0; i < 100; ++i) {
+		Particle * p = ParticleFactory::createParticle("star");
+		particles.push_back(p);
+		addObserver(p);
+	}
+	for (int i = 0; i < 5; ++i) {
+		Particle * p = ParticleFactory::createParticle("shooting_star");
+		particles.push_back(p);
+		addObserver(p);
+	}
+	for (int i = 0; i < 10; ++i) {
+		Particle * p = ParticleFactory::createParticle("planet");
+		particles.push_back(p);
+		addObserver(p);
+	}
+	for (int i = 0; i < 1; ++i) {
+		Particle * p = ParticleFactory::createParticle("black_hole");
+		particles.push_back(p);
+		addObserver(p);
+	}
+}
+```
+
 **El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.**
+
+Por lo que comprendo en este ejemplo el usar particle factory como un static queda perfecto porque solo queremos crear particulas, y esto permite que no sea necesario crear nuevas instancias, lo que ahorra memoria y hace que este método sea más sencillo, sin embargo si en lugar de una particula quisiera crear un carro por ejemplo, entonces sería mejor tener distintas estancias para distintas fabricas y que así cada una se encargue de una clase. 
 
 ## Actividad 04
 
