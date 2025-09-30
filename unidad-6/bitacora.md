@@ -101,7 +101,7 @@ Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, q
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.** 🦋
 
 Ejemplo con la tecla 'a'
-> Primero hice un diagrama yo con como me imaginaba que funcionaba la secuancia en ste evento 
+> Primero hice un diagrama yo con como me imaginaba que funcionaba la secuancia en este evento 
 <img width="1138" height="656" alt="image" src="https://github.com/user-attachments/assets/d1752a97-e5db-4007-9621-420cc8e2f9de" />
 
 >Depués le dije a chat gpt que lo hiciera y lo pase a mermeid para ver que tan diferente era
@@ -211,6 +211,8 @@ Por lo que entiendo Los métodos OnEnter y OnExit se usan en el caso de querer e
 Por ejemplo en los casos planteados el usar el método OnEnter en el state attract podría hacer que se buscó por ejemplo la ubicación del mouse, mientras que usar el método OnExit en el state Stop Se podría hacer por ejemplo que salir de ese estado la velocidad sea igual a cero para que de cierta forma vuelva a iniciar en el siguiente estado.
 
 ## Actividad 05 🐞
+
+**El código fuente completo de tu proyecto openFrameworks.** 🦋
 
 OfApp.h
 ``` c++
@@ -540,3 +542,25 @@ void ofApp::keyPressed(int key) {
 	}
 }
 ```
+
+**Explica cómo usaste el patrón Factory para esta nueva partícula.** 🦋
+
+Para esta nueva partícula el patrón factory lo use para generar el nuevo tipo de particula en si, ya que este patrón permite dar las características a cada partícula, y eneste caso lo use para asignarle un nombre que en este caso es "sun", asignar un tamaño random, su color amarillo y una velocidad menor en comparación a las demás. Despúes simplemente agrege en el setup la cantidad de particulas que quería que se crearan y listo, partícula nueva.
+
+**Describe cómo implementaste el patrón Observer para esta nueva partícula.** 🦋
+
+El patrón observer en esta partícula se implementa igual que el resto de partículas, es decir, estas partículas son tambien observers como lo indica su herencia, por ende estos se guian a partir de método notify para así definir su comportamiento actual. 
+
+**Explica cómo aplicaste el patrón State a esta nueva partícula.** 🦋
+
+Esta nueva partícula se guía con el mismo patrón state de las demás, es esto quiere decir que espera los mismos eventos que son las teclas 'a','s','r' y 'n', y tiene el mismo comportamiento de las demás solo con algunas variaciones como su velocidad 
+
+> **NOTA:**
+> En este caso para crear la nueva partícula use el patrón factory simplemente, sin embargo, también es posible crear una nueva particula por medio de la herencia de clases y despúes aplicarle a esta el patrón observer, factory y los estados ya planetados. Pero decidi hacerlo de esta manera porque el fin de esta unidad era aprender estos nuevos patrones y como fácilitan el trabajo en casos con estos, donde para crear un nuevo tipo de objeto solo es necesario indicarlo en el factory y ya por su herencia detrás ya tiene todo organizado.
+
+## Autoevaluación 🐝
+
+Mi nota es: 
+
+| **Actividad** | **Nota** | **Justificación** |
+|--------:|-------:|---------:|
