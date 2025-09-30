@@ -196,8 +196,18 @@ Eso es útil aplicarlo ya que hace más fácil controlar los cambios que hay en 
 
 **Dibuja un diagrama de estados simple para la clase Particle. Muestra los diferentes estados (Normal, Attract, Repel, Stop) como nodos y las transiciones entre ellos como flechas etiquetadas con el evento que las causa (p. ej., la tecla presionada: ‘n’, ‘a’, ‘r’, ‘s’).**
 
+<img width="1076" height="714" alt="image" src="https://github.com/user-attachments/assets/f068356c-6b2c-4125-b270-329841542b5a" />
 
+En este caso hice el diagrama de esta forma ya que no sigue una secuencia como tal, sino que sin importar en que estado se encuentre puede cambiar a cualquiera de los otros tres estados. Sin embargo, al inicio si empieza con el estado normal.
 
 **Describe las ventajas de usar el patrón State en Particle en lugar de tener un miembro std::string estadoActual y usar un gran if/else if/else o switch dentro de Particle::update() para cambiar el comportamiento. Piensa en cohesión, extensibilidad (añadir nuevos estados) y el Principio Abierto/Cerrado (Open/Closed Principle).**
 
+Supongo que algunas de las ventajas son el no tener que mover ni modificar la clase particle, sino que ahora si se quiere agregar un nuevo estado dentro del patrón simplemnete se crea una nueva clase state y marcala en notify con setstate. Este como todos los patrones que ahí en esta unidad facilitan era el trabajo en equipo ya que si se quiere probar un estado es fácil probarlo por separado en lugar de tener que probar todo en conjunto.
+
 **¿Qué responsabilidad tienen los métodos onEnter y onExit en el patrón State? Proporciona un ejemplo de por qué podrían ser útiles (incluso si no se usan mucho en todos los estados de este caso de estudio). Por ejemplo, ¿Qué podrías hacer en onEnter para AttractState o en onExit para StopState?**
+
+Por lo que entiendo Los métodos OnEnter y OnExit se usan en el caso de querer entrar o salir de algún estado, ya que por ejemplo al momento de salir esta borra el estado en que se encuentra actualmente para poder entrar al nuevo estado. Es decir, qué esos métodos Lo que hacen es dar instrucciones de que se debe hacer al momento de ingresar o salir de un estado, por ejemplo si quiere entrar en el estado normal en este caso la idea es que las partículas inicien con su movimiento.
+
+Por ejemplo en los casos planteados el usar el método OnEnter en el state attract podría hacer que se buscó por ejemplo la ubicación del mouse, mientras que usar el método OnExit en el state Stop Se podría hacer por ejemplo que salir de ese estado la velocidad sea igual a cero para que de cierta forma vuelva a iniciar en el siguiente estado.
+
+## Atividad 05
