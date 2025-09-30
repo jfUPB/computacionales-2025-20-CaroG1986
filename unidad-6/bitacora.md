@@ -190,7 +190,13 @@ Por lo que comprendo en este ejemplo el usar particle factory como un static que
 
 **Explica con tus propias palabras el propósito del patrón State. ¿Cuándo es útil aplicarlo?**
 
+El patrón state es una forma de controlar el flujo que va a tener un programa definiendo hoy el patrón de comportamiento que va a tener este según el estado actual en el que se encuentre. Por ejemplo, esto puede verse similar a cuando en unity se le agrega una animación a un personaje y dependiendo de sí está caminando, quieto o realizando alguna acción, la animación va a ser diferente.
+
+Eso es útil aplicarlo ya que hace más fácil controlar los cambios que hay en el programa y facilitan El diseño y el control de los proyectos con relación a los eventos que ocurran.
+
 **Dibuja un diagrama de estados simple para la clase Particle. Muestra los diferentes estados (Normal, Attract, Repel, Stop) como nodos y las transiciones entre ellos como flechas etiquetadas con el evento que las causa (p. ej., la tecla presionada: ‘n’, ‘a’, ‘r’, ‘s’).**
+
+
 
 **Describe las ventajas de usar el patrón State en Particle en lugar de tener un miembro std::string estadoActual y usar un gran if/else if/else o switch dentro de Particle::update() para cambiar el comportamiento. Piensa en cohesión, extensibilidad (añadir nuevos estados) y el Principio Abierto/Cerrado (Open/Closed Principle).**
 
