@@ -2,6 +2,7 @@
 
 ## Actividad 01 🐞
 <a name="exp1"></a>
+
 >**Explicación del código**
 >
 >Primero la aplicación como tal:
@@ -93,6 +94,7 @@ Creo que lo que ocurre al presionar las teclas es que el método notify informa 
 El patrón observer se implementa por medio del polimorfismo, permitiendo que otras clases, las que serían entonces los observadores concretos, se "suscriban" a una clase sujeto, en otras palabras, es como si estuvieran suscritos a un periodico o una plataforma de noticias y les llegaran notificaciones cada vez que sale un nuevo reporte. Esto permite que cada uno de los observadores concretos se comporten dependiendo de la información que llegue del sujeto. Si se piensa de una forma más cotidiana, es como cuando una noticia causa histeria colectiva, afectado el comportamiento de las personas, y este ejemplo lo veo como que la información que llega permite a los observadores definir como se van a comportar respecto al mouse. 
 
 **Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.** 🦋
+
 <a name="exp2"></a>
 <img width="593" height="577" alt="image" src="https://github.com/user-attachments/assets/ac79e72f-9345-4fa5-b950-2be6167ef1eb" />
 
@@ -100,6 +102,7 @@ Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, q
 
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.** 🦋
 <a name="exp3"></a>
+
 Ejemplo con la tecla 'a'
 > Primero hice un diagrama yo con como me imaginaba que funcionaba la secuancia en este evento 
 <img width="1138" height="656" alt="image" src="https://github.com/user-attachments/assets/d1752a97-e5db-4007-9621-420cc8e2f9de" />
@@ -196,7 +199,9 @@ El patrón state es una forma de controlar el flujo que va a tener un programa d
 Eso es útil aplicarlo ya que hace más fácil controlar los cambios que hay en el programa y facilitan El diseño y el control de los proyectos con relación a los eventos que ocurran.
 
 **Dibuja un diagrama de estados simple para la clase Particle. Muestra los diferentes estados (Normal, Attract, Repel, Stop) como nodos y las transiciones entre ellos como flechas etiquetadas con el evento que las causa (p. ej., la tecla presionada: ‘n’, ‘a’, ‘r’, ‘s’).** 🦋
+
 <a name="exp5"></a>
+
 <img width="1076" height="714" alt="image" src="https://github.com/user-attachments/assets/f068356c-6b2c-4125-b270-329841542b5a" />
 
 En este caso hice el diagrama de esta forma ya que no sigue una secuencia como tal, sino que sin importar en que estado se encuentre puede cambiar a cualquiera de los otros tres estados. Sin embargo, al inicio si empieza con el estado normal.
@@ -555,7 +560,9 @@ El patrón observer en esta partícula se implementa igual que el resto de part�
 **Explica cómo aplicaste el patrón State a esta nueva partícula.** 🦋
 
 Esta nueva partícula se guía con el mismo patrón state de las demás, es esto quiere decir que espera los mismos eventos que son las teclas 'a','s','r' y 'n', y tiene el mismo comportamiento de las demás solo con algunas variaciones como su velocidad 
+
 <a name="exp6"></a>
+
 > **NOTA:**
 > En este caso para crear la nueva partícula use el patrón factory simplemente, sin embargo, también es posible crear una nueva particula por medio de la herencia de clases y despúes aplicarle a esta el patrón observer, factory y los estados ya planetados. Pero decidi hacerlo de esta manera porque el fin de esta unidad era aprender estos nuevos patrones y como fácilitan el trabajo en casos con estos, donde para crear un nuevo tipo de objeto solo es necesario indicarlo en el factory y ya por su herencia detrás ya tiene todo organizado.
 
