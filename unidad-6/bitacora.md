@@ -564,3 +564,4 @@ Mi nota es:
 
 | **Actividad** | **Nota** | **Justificación** |
 |--------:|-------:|---------:|
+| 1  | 1na unidad| En esta actividad, además de estar completa, intente descomponer el código parte por parte para poner comprender mejor como se puede ver en este ejemplo |
