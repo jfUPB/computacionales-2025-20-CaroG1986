@@ -1,7 +1,7 @@
 # Bitácora de aprendizaje de la unidad 6
 
 ## Actividad 01 🐞
-
+<a name="exp1"></a>
 >**Explicación del código**
 >
 >Primero la aplicación como tal:
@@ -93,13 +93,13 @@ Creo que lo que ocurre al presionar las teclas es que el método notify informa 
 El patrón observer se implementa por medio del polimorfismo, permitiendo que otras clases, las que serían entonces los observadores concretos, se "suscriban" a una clase sujeto, en otras palabras, es como si estuvieran suscritos a un periodico o una plataforma de noticias y les llegaran notificaciones cada vez que sale un nuevo reporte. Esto permite que cada uno de los observadores concretos se comporten dependiendo de la información que llegue del sujeto. Si se piensa de una forma más cotidiana, es como cuando una noticia causa histeria colectiva, afectado el comportamiento de las personas, y este ejemplo lo veo como que la información que llega permite a los observadores definir como se van a comportar respecto al mouse. 
 
 **Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.** 🦋
-
+<a name="exp2"></a>
 <img width="593" height="577" alt="image" src="https://github.com/user-attachments/assets/ac79e72f-9345-4fa5-b950-2be6167ef1eb" />
 
 Yo lo quise representar de una forma más sencilla, en el que Subject y OfApp, que son algo así como el sujeto y el sujeto concreto respectivamente, son los politicos y medios de comunicación, mientras que observer y particle, que son el observador y el observador concreto, son todos aquellos que recicen dicha información.
 
 **Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.** 🦋
-
+<a name="exp3"></a>
 Ejemplo con la tecla 'a'
 > Primero hice un diagrama yo con como me imaginaba que funcionaba la secuancia en este evento 
 <img width="1138" height="656" alt="image" src="https://github.com/user-attachments/assets/d1752a97-e5db-4007-9621-420cc8e2f9de" />
@@ -107,7 +107,7 @@ Ejemplo con la tecla 'a'
 >Depués le dije a chat gpt que lo hiciera y lo pase a mermeid para ver que tan diferente era
 <img width="1366" height="800" alt="image" src="https://github.com/user-attachments/assets/1566a2bc-db07-4163-beca-4ebea3c5b6b8" />
 
-Con este experimiento siento que si logre comprender muyr bien la secuencia, es cierto que hay algunos detalles diferentes, pero en terminos generales ambos dicen prácticamante lo mismo y siguen el mismo "flujo"
+Con este experimiento siento que si logre comprender muy bien la secuencia, es cierto que hay algunos detalles diferentes, pero en terminos generales ambos dicen prácticamante lo mismo y siguen el mismo "flujo"
 
 **¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.** 🦋
 
@@ -124,6 +124,7 @@ Yo diría que el proposito principal de un Factory Method es tener un lugar dond
 Es lo que estaba mencionando en el punto anterior. La verdad al ver esta funión setup siento que es mucho más simple y leible a comparación de si tuviera que instanciar cada particula en esta, teniendo que asignar en el setup las características de cada una. Así como esta el método se ve más corte, sencillo y no hay necesidad de estar buscando entre el código para cambiarle algún detalle al programa, si quiero cambiar la cantidad que se instancia voy a setuo y si quiere cambiar algo del color o tamaño voy a Factory.
 
 **Imagina que quieres añadir un nuevo tipo de partícula llamada "black_hole" que tiene tamaño grande, color negro y velocidad muy lenta. Describe los pasos que necesitarías seguir para implementar esto utilizando la ParticleFactory existente. ¿Tendrías que modificar ofApp::setup? ¿Por qué sí o por qué no?** 🦋
+<a name="exp4"></a>
 
 <img width="1024" height="756" alt="image" src="https://github.com/user-attachments/assets/157cd0e5-72c5-4937-ab63-d8ca7b360dea" />
 
@@ -195,20 +196,20 @@ El patrón state es una forma de controlar el flujo que va a tener un programa d
 Eso es útil aplicarlo ya que hace más fácil controlar los cambios que hay en el programa y facilitan El diseño y el control de los proyectos con relación a los eventos que ocurran.
 
 **Dibuja un diagrama de estados simple para la clase Particle. Muestra los diferentes estados (Normal, Attract, Repel, Stop) como nodos y las transiciones entre ellos como flechas etiquetadas con el evento que las causa (p. ej., la tecla presionada: ‘n’, ‘a’, ‘r’, ‘s’).** 🦋
-
+<a name="exp5"></a>
 <img width="1076" height="714" alt="image" src="https://github.com/user-attachments/assets/f068356c-6b2c-4125-b270-329841542b5a" />
 
 En este caso hice el diagrama de esta forma ya que no sigue una secuencia como tal, sino que sin importar en que estado se encuentre puede cambiar a cualquiera de los otros tres estados. Sin embargo, al inicio si empieza con el estado normal.
 
 **Describe las ventajas de usar el patrón State en Particle en lugar de tener un miembro std::string estadoActual y usar un gran if/else if/else o switch dentro de Particle::update() para cambiar el comportamiento. Piensa en cohesión, extensibilidad (añadir nuevos estados) y el Principio Abierto/Cerrado (Open/Closed Principle).** 🦋
 
-Supongo que algunas de las ventajas son el no tener que mover ni modificar la clase particle, sino que ahora si se quiere agregar un nuevo estado dentro del patrón simplemnete se crea una nueva clase state y marcala en notify con setstate. Este como todos los patrones que ahí en esta unidad facilitan era el trabajo en equipo ya que si se quiere probar un estado es fácil probarlo por separado en lugar de tener que probar todo en conjunto.
+Supongo que algunas de las ventajas son el no tener que mover ni modificar la clase particle, sino que ahora si se quiere agregar un nuevo estado dentro del patrón simplemente se crea una nueva clase state y marcala en notify con setstate. Este como todos los patrones que ahí en esta unidad facilitan era el trabajo en equipo ya que si se quiere probar un estado es fácil probarlo por separado en lugar de tener que probar todo en conjunto.
 
 **¿Qué responsabilidad tienen los métodos onEnter y onExit en el patrón State? Proporciona un ejemplo de por qué podrían ser útiles (incluso si no se usan mucho en todos los estados de este caso de estudio). Por ejemplo, ¿Qué podrías hacer en onEnter para AttractState o en onExit para StopState?** 🦋
 
 Por lo que entiendo Los métodos OnEnter y OnExit se usan en el caso de querer entrar o salir de algún estado, ya que por ejemplo al momento de salir esta borra el estado en que se encuentra actualmente para poder entrar al nuevo estado. Es decir, qué esos métodos Lo que hacen es dar instrucciones de que se debe hacer al momento de ingresar o salir de un estado, por ejemplo si quiere entrar en el estado normal en este caso la idea es que las partículas inicien con su movimiento.
 
-Por ejemplo en los casos planteados el usar el método OnEnter en el state attract podría hacer que se buscó por ejemplo la ubicación del mouse, mientras que usar el método OnExit en el state Stop Se podría hacer por ejemplo que salir de ese estado la velocidad sea igual a cero para que de cierta forma vuelva a iniciar en el siguiente estado.
+Por ejemplo en los casos planteados el usar el método OnEnter en el state attract podría hacer que se buscó por ejemplo la ubicación del mouse, mientras que usar el método OnExit en el state Stop se podría hacer por ejemplo que salir de ese estado la velocidad sea igual a cero para que de cierta forma vuelva a iniciar en el siguiente estado.
 
 ## Actividad 05 🐞
 
@@ -554,14 +555,18 @@ El patrón observer en esta partícula se implementa igual que el resto de part�
 **Explica cómo aplicaste el patrón State a esta nueva partícula.** 🦋
 
 Esta nueva partícula se guía con el mismo patrón state de las demás, es esto quiere decir que espera los mismos eventos que son las teclas 'a','s','r' y 'n', y tiene el mismo comportamiento de las demás solo con algunas variaciones como su velocidad 
-
+<a name="exp6"></a>
 > **NOTA:**
 > En este caso para crear la nueva partícula use el patrón factory simplemente, sin embargo, también es posible crear una nueva particula por medio de la herencia de clases y despúes aplicarle a esta el patrón observer, factory y los estados ya planetados. Pero decidi hacerlo de esta manera porque el fin de esta unidad era aprender estos nuevos patrones y como fácilitan el trabajo en casos con estos, donde para crear un nuevo tipo de objeto solo es necesario indicarlo en el factory y ya por su herencia detrás ya tiene todo organizado.
 
 ## Autoevaluación 🐝
 
-Mi nota es: 
+**Mi nota es: 5**
 
 | **Actividad** | **Nota** | **Justificación** |
 |--------:|-------:|---------:|
-| 1  | 1na unidad| En esta actividad, además de estar completa, intente descomponer el código parte por parte para poner comprender mejor como se puede ver en este ejemplo |
+| 1  | 1na unidad| En esta actividad, además de estar completa, intente descomponer el código parte por parte para poner comprender mejor como se puede ver en [esta explicación](#exp1).También se ven todas las evidencias de los experimientos. |
+| 2   | 1na unidad | Aquí me esforce incluso más, ya que nunca habia visto algo parecido al patrón observer es por esto que hice los diagrmas de forma conciente y con la intención de ser más sencillos para mi comprensión, como se ve en [este diagrama](#exp2),  además de otro ejercicio que hice para ver que tan bien comprendi la secuencia del programa que se puede ver [aquí](#exp3). |
+| 3  | 1na unidad | En esta unidad como también fue algo nuevo me tome el tiempo para revisar lás preguntas detenidamente, principalmente la de [crear una nueva partícula](#exp4) que no solo imagine coo sería sino que directamente la cree para comprender mejor. |
+| 4  | 1na unidad | Esta actividad esta completa y como esta parte si la comprendía un poco más antes no profundize mucho en esto, pero de igual forma me asegure de que si comprendiera bien como se ven los estados en este ejemplo, algo que creo se ve reflejado en [este diagrama](#exp5). |
+| 5  | 1na unidad | Esta actividad también esta completa y siento que se me hizo sencilla gracias a que comprendí mejor como funcionan estos patrones y porque son tan utiles, principalmente para facilitar las cosas en el futuro, como el agregar las estados o subclases. [Aquí](#exp6) explico bien como y porque realize la actividad así| 
