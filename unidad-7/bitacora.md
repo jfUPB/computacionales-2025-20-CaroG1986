@@ -31,3 +31,6 @@ Lo primero que vi es que era necesario configurar aspectos de la ventana, como s
 
 **Necesito que hagas digestión de esta información y que la entiendas. Para ello te voy a pedir un resumen en tus propias palabras de lo que acabas de leer. En tu resumen debes tratar de conectar GLFW, opengl32.lib, GLAD, GLM y los drivers de la GPU. ¿Qué rol cumple cada uno? ¿Cómo se relacionan entre sí? Mira, trata de hacer esto de memoria y como si estuvieras contándole a un amigo que quiere aprender OpenGL. Cuando haces el proceso de memoria tu cerebro hace un esfuerzo adicional y eso te ayuda a aprender. Además, si no recuerdas algo quiere decir que no lo entendiste bien y eso es una buena señal para que vuelvas a leerlo.**
 
+<img width="1919" height="1033" alt="image" src="https://github.com/user-attachments/assets/e9eccc93-e977-441e-82f9-01fe2a73325b" />
+
+> lo logré 😃
