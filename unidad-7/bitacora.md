@@ -180,3 +180,52 @@ El Fragment shading es el encargado de calcular el color final de cada píxel ba
 **¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?**
 
 el hecho de que un programa tenga múltiples iluminaciones, requiere de que se generen miles de cálculos instantáneos para poder variar la tonalidad de cada una de las caras que conforman el fragmento de modelo visible a la cámara
+
+**Escribe un resumen en tus propias palabras de lo que se necesita para dibujar un triángulo en OpenGL.**
+
+Inicialmente necesitamos los objetos (El VAO, VBO y los Shaders) que están identificados con ID único para mayor practicidad. 
+
+Luego, necesitamos los datos de los vértices que le permite al computador comprender la ubicación exacta de lo que queremos hacer. 
+
+Después necesitamos los buffers que encapsula la información de los vértices y se hace binding. 
+
+También debemos indicar cómo están organizados los datos de los vértices con una función glVertexAttribPointer y un glEnanbleVertexAtribArray para activar sus atributos 
+
+Luego necesitamos el Vertex shader que proceda la posición de cada vértice y un fragment shader que define el color de cada píxel 
+
+Finalmente con glDrawArrays dibujar la figuras, pidiendo que se unan los 3 vértices para crear un triángulo
+
+**Escribe un resumen en tus propias palabras de lo que necesitas para poder usar un shader en OpenGL.**
+
+Los shaders son programas que se ejecutan en la GPU y esos procesan los vértices y los fragmentos. Para este ejemplo entonces se crea en el objeto una función que contiene el programa de los shaders. Y a está función se le agrega un ID gracias al celi es que se puede llamar más tarde en otros momentos dentro del programa. 
+Entonces por este caso primero llamaba el shader de los vértices para verificar los errores, y después decía lo mismo con fragmentos. Eso con la intención de ver primero lo más sencillo y luego ir hacia lo más complejo. 
+Cuando te verifique que no hay ningún problema con los shaders simplemente se eliminan porque ya no son necesarios. Es decir, en realidad son una guía sin embargo no se elimina el objeto que contenía la información de los shaders, qué es el encargado de ejecutarlos en la GPU.
+
+Ahora podemos ver cada shader por separado: los de vértices reciben los datos de dos puntos respecto a su posición y lo convierte en un vector con esa información. En ese caso lo podés ver como el componente w lo asigna siempre como un 1 para que todas las coordenadas sean homogéneas. Después de lo que se ve esta como información debe traducirse a la pantalla en el viewport. Un paso importante en esta parte es establecer una localización para el Buffer de los atributos (o su espacio de memoria) que permite más tarde vincular los vértices al Buffer de vertices.
+
+Ahora el shader de los fragmentos, es el encargado del color, que en este caso es un color fijo naranja que se establece con un vector de 4 componentes del RGBA
+
+**Implementa el código anterior en tu máquina y captura pantalla del resultado. Pero antes de hacerlo trata de predecir qué va a pasar.**
+
+Supongo que como los triangulos que va a aparecer usan un draw diferentes y shaders basados en cosas diferentes entonces cada uno tendra características distintas.
+
+<img width="1422" height="823" alt="image" src="https://github.com/user-attachments/assets/b1dd1299-e26c-477a-b373-60fe907f4e81" />
+
+## Actividad 05 
+
+Hice dos intentos y ambos salieron algo distintos:
+El primero parese una culebra que cambia de color. Al paarecer el problema con este es que le faltaba limpiar los trazos en la pantalla
+<img width="500" height="526" alt="image" src="https://github.com/user-attachments/assets/ccb3ed2e-49e9-4c4d-ab3c-0f322981be12" />
+
+Ya en el segundo solo era el triangulito que se mueve y cambia de color
+<img width="504" height="462" alt="image" src="https://github.com/user-attachments/assets/29845a51-341f-474c-8437-055b5d7da81f" />
+
+**Explica el proceso de normalización de las coordenadas del mouse y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+
+La normalización es un proceso en cual se trasforma la información para entrar en un rango determinado, en este caso entre 0 y 1. Se relaciona con las coordenadas ya que permite establecer un limite que no genere un número muy grande, y por ende optimiza la información.
+
+**Explica el proceso de normalización a coordenadas de dispositivo (NDC) y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+
+Es el proceso mediante el cual OpenGL transforma las posiciones de los vértices al rango estándar de -1 a 1 en cada eje (x, y, z) independientemente del tamaño del monitor. Aquí, x es de izquierda a derecha, y de abajo a arriba y z de cerca a lejos 
+
+Todo lo que queda por fuera de los parámetros se recorta y no se muestra. En este código del triángulo, más coordenadas del mouse se convierten a este rango para que el desplazamiento del triángulo sea visible. En otras palabras, OpenGL utiliza el espacio NDC como puente antes de proyectar los vértices en coordenadas reales en pantalla
