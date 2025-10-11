@@ -64,3 +64,69 @@ Para estos experimentos primero cambie la variable SCR_WIDTH de 400 a 250, al ca
 después quería ver que pasaba al cambiar SCR_HEIGHT por lo que lo cambie a 200 y se ve así 
 
 <img width="1391" height="684" alt="image" src="https://github.com/user-attachments/assets/f4e5e60d-f0d3-49c9-8032-d65e86278d3d" />
+
+**¿Qué pasa si cambias el primer parámetro de glDrawArrays a GL_LINES? ¿Qué pasa si lo cambias a GL_POINTS? ¿Qué pasa si cambias el tercer parámetro a 2? ¿Qué pasa si lo cambias a 4?** 
+
+CON 2:
+Okay, para esto intenté haciendo el experimento dentro del programa cuando lo ejecuté con solo dos vértices no me apareció nada en la ventana.
+<img width="1380" height="659" alt="image" src="https://github.com/user-attachments/assets/960e942e-fa9e-41fc-af92-df0fd1b37836" />
+
+CON 4: 
+Después lo cambié a cuatro vértices y si se ve pero ese mismo triángulo.
+<img width="1423" height="673" alt="image" src="https://github.com/user-attachments/assets/4af47156-ef0a-4ea0-9877-80f7ee874aa5" />
+
+Esto es algo fuera de lo previsto ya que habría pensado normalmente que a poner dos aparecería una línea y al poner cuatro aparecería un cuadrado. Mi teoría es que como todo el resto del código está diseñado para que se genere un triángulo y ahí dice como que genera un triángulo entonces por eso cuando uno cambia el valor, si lee dos vértices pues siente que no es suficiente y si lee cuatro dice no pues me sobra uno ese no va a valer y voy a poner tres, esa es  mi teoría. Además ahí se muestra que hay una primitiva de hacer un triángulo entonces por eso supongo que es el resultado.
+
+**¿Qué es el contexto OpenGL?**
+
+estructura de datos que contiene los recursos y la conexión de ventana donde se dibujarán los gráficos
+
+**¿Cuál es el rol de la biblioteca GLFW y qué ventaja tiene usarla?**
+
+Es la que nos permite crear las ventanas y recibir sus eventos, así como también eventos de entrada. Se encarga de los datos como el tamaño de la ventana o si pulsamos la tecla Esc para cerrarla. La ventaja de utilizar esa biblioteca es que nos permite reutilizar código para no tener que diseñar el uso de las ventanas en cada programa.
+
+**¿Por qué crees que OpenGL necesita un contexto (recuerda la analogía del taller de arte)?**
+
+El contexto le otorga las herramientas a OpenGL para que haga las cosas que queremos que haga. Como indicaba el ejemplo,  un artista no puede pintar si no tiene si quiera un espacio donde hacerlo y mucho menos si no tiene sus herramientas, eso es lo que nos otorga el contexto
+
+**¿En últimas qué será el framebuffer y a qué te recuerda de las dos primeras unidades del curso?**
+
+El frame Buffer es el área sobre el cual open gl (en realidad es la GPU bajo las órdenes de openGL) dibuja lo que pedimos. El cual se ajusta a la ventana que creamos. Esto me recuerda a las dos primeras unidades ya que en estas aprendimos a pintar una pantalla usando la dirección de memoria de esta, y eso es lo que hace el framebuffer. Es decir, almacenar la información sobre que hay en cada Pixel de la imagen (como su color)
+
+**¿Qué relación entre en el viewport y el framebuffer?**
+
+El framebuffer contiene la información del dibujo realizado, el viewport es la ventana que proyecta el dibujo.
+
+**¿En todo la analizado hasta ahora qué rol juega los drivers de la GPU y la GPU misma?**
+
+Los drivers de la GPU son un conjunto de programas que permiten a las aplicaciones comunicarse con la GPU. Mientras que la GPU es la encargada de procesar la creación de dicha imágenes. Para este caso en Open GL lo que ocurre es que por medio de esta API se utilizan los drivers de la GPU y estos traducen el lenguaje que usemos (en este caso c++) para que sea ejecutable para la GPU.
+
+**¿Por qué crees que sea necesario activar el VSync? ¿Si no lo activas y la imagen es estática qué crees que pase, y si es dinámica?**
+
+El VSync se encarga de limitar el refresco de la ventana al mismo refresco del monitor 
+Es decir, sincroniza ambos procesos de refresco para evitar que haga tearing y que tenga un movimiento natural 
+
+Si no lo usamos probablemente haya algo de tearing (es decir que la pantalla se vea como rota de cierta forma).Si la imagen fuese estática supongo que permanecería igual, si fuese dinámica creo que se congelaria o no sería capaz de cargar bien su dinamismo. Por ejemplo en este caso, sin esta parte del código supongo que no se actualizaría correctamente en caso de cambiar el tamaño del viewport.
+
+**En esta unidad estamos usando OpenGL moderno, pero ¿Qué es OpenGL Legacy? ¿Qué diferencias hay entre ambos?**
+
+OpenGL legacy es una implementación antigua del OpenGL que utiliza pipelines (entradas secuenciales donde la salida de una etapa, es la entrada de la siguiente) de funciones fijas en lugar de Shaders programables 
+
+Su diferencia principal con el moderno es que los Shaders son programables en el moderno, ofreciendo también los buffers de vértices para otorgar más control.
+
+**¿Qué es el shader program? ¿Por qué es importante en OpenGL moderno?**
+
+Un programa shader es un programa que se ejecuta en la GPU para controlar la apariencia visual de lo que se dibuja, es importante ya que reemplazó los pipelines fijos por unos programables, cediendo más control. Es fundamental para iluminación, texturas y sombras, lo que recuerda a programas de diseño gráfico, donde el renderizado es de vital importancia, como blender por ejemplo.
+
+**Trata de revisar el código setupTriangle(), intuitivamente ¿Qué crees que hace? ¿Qué crees que es el VAO y el VBO?**
+
+setupTriangle lo que configura los datos del triángulo (como los vértices) y los manda a la GPU, definiendo como se va a ver en pantalla 
+
+El VAO es un objeto que encapsula todos los estados de los buffers y atributos de vértices para crear el triángulo. Mientras que un VBO se trata de un espacio en la memoria de la GPU en donde está la información de los vértices sobre las figuras que se van a proyectar en la pantalla. Es decir eso es lo que define si lo que vemos es 3D o 2D. Por ejemplo aquí se aplica si uno lo ve como el encargado de los vértices del triángulo.
+
+**En el ciclo principal (game loop) de OpenGL, notaste que en cada frame (cuadro) le decimos a openGL que use el shader program y el VAO. Si le indicas esto antes del game loop ¿Será necesario seguirlo haciendo en cada loop? Si no es necesario ¿En qué casos crees que esto puede ser útil?**
+
+Lo más probable es que no se tenga que estar llamando constantemente, ya que siempre es la misma figura: un triángulo, independientemente de cuanto volteemos el canvas. Adicionalmente , desde antes ya había una función triángulo. Reforzando la idea de que basta con que los Shaders apliquen una sola vez en este caso de código, ya que el triángulo es siempre el mismo.En un caso en el que esto podría ser útil sería por ejemplo si fuera necesario modificar constantemente las visuales del objeto de queremos crear. Por ejemplo modificar el número de sus vértices o su color.
+
+**Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)**
+
