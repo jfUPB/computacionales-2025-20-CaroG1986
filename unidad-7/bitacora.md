@@ -130,3 +130,53 @@ Lo más probable es que no se tenga que estar llamando constantemente, ya que si
 
 **Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)**
 
+La función se encarga de intercambiar el buffer trasero por el delantero asegurando una imagen fluida. Si no se llama hipotéticamente deberían suceder parpadeos... Veamos que pasa si quitamos la línea: (Aquí lo probamos y el computador colapso)
+<img width="1011" height="658" alt="image" src="https://github.com/user-attachments/assets/05362e38-966b-46d9-8bb4-86329accd6a1" />
+La importancia está en que depende de esa función la fluidez del programa. En este caso como el programa colapso el computador lo siguió.
+
+## Actividad 04 
+
+**¿Cuál es la diferencia entre una CPU y una GPU?**
+
+La CPU actúa como el cerebro del computador, siendo un procesador que lidia con las tareas básicas de este y el funcionamiento del sistema. No obstante, la GPU es un procesador de ejecución masiva. Es decir, el adecuado para las tareas específicamente pesadas. Por eso es que es necesario tener GPUs potentes para los juegos o programas 3D, porque requieren de miles de cálculos en tiempo real para si correcta ejecución
+
+**¿Cuáles son los tres pasos claves del pipeline de OpenGL? Explica en tus propias palabras cuál es el objetivo de cada paso.**
+
+- Vertex shading 
+Se encarga de calcular todo lo necesario en la escena 
+Cada uno de los objetivos, sus caras y vértices, al igual que la información de cada una de las caras traducidas en píxeles y aplica los colores en RGB y carga sus texturas. Además de que para ahorrar recursos, calcula las distancias de cada objeto, de modo en que solo renderiza las cosas que estén al frente y que sean visibles desde la perspectiva de la cámara. Es decir, calcula todo lo 3D a 2D
+
+- Rasterization 
+Se encarga de optimizar al máximo el plano 2D creado por el Vertex shading y aplicarle correctamente los colores, también como asegurarse de que no se hagan las texturas traseras innecesarias que no se vean en ese momento en el modelo
+
+- Fragment shading 
+Esta se encarga del cálculo de la posición de las normales (hacia que lado están mirando las caras de la malla de polígonos) para así establecer el rango de color que se debe aplicar. En otras palabras, si la cara en ese contexto en específico debe ir muy claro porque le está dando toda la luz o muy oscuro porque está en las sombras, haciendo escenas mucho más realistas
+
+**La gran novedad que introduce OpenGL moderno es el pipeline programable. ¿Qué significa esto? ¿Qué diferencia hay entre el pipeline fijo y el programable? ¿Qué ventajas le ves a esto? y si el pipeline es programable, ¿Qué tengo que programar?**
+
+
+La novedad del pipeline programable es que ciertas etapas del pipeline de renderizado, que antes estaban fijas y controladas por hardware, ahora se pueden personalizar con los Shaders. La diferencia entre el pipeline fijo y el programable, es que en el fijo sus etapas son predefinidas con un control demasiado limitado. Mientras que con el pipeline programable es que puedes crear Shaders para las estampas más importantes, como la transformación de píxeles y su coloración. Facilitando la creación de gráficos complejos. Las ventajas principales están en que ofrecen mayor flexibilidad y rendimiento, volviéndose un estándar de la industria y lo que se debe programar principalmente es el Vertex shader, el Fragment shading y la rasterization. 
+
+**Si fueras a describir el proceso de rasterización ¿Qué dirías?**
+
+Divide las imágenes en fragmentos que a su vez están divididos por pixeles. Esto le permite ser el encargado de la optimización de los colores y elimina lo innecesario a la vista de la cámara. 
+
+**¿Qué son los fragmentos? ¿Es lo mismo un fragmento que un pixel? ¿Por qué?**
+
+No son lo mismo, los fragmentos contienen pixeles. Los fragmentos son conjuntos que forman triángulos, estos triángulos dividen cada parte de las imágenes que serán visibles al final y son estos los que ayudan a optimizar el proceso, ya que en lugar de pensar en billones de pixeles ahora pensamos en millones de framentos. 
+
+**Explica qué problema resuelve el Z-buffer y ¿Qué es el depth test?**
+
+El Z-BUFFER es el encargado de la profundidad. Es gracias a este que se identifican cuáles píxeles se encuentran más lejos desde la perspectiva de la cámara, eso es lo que permite que se vean principalmente los elementos más cercanos a la cámara.
+
+**¿Por qué se presenta el problema de la aliasing? ¿Qué es el anti-aliasing?**
+
+El Aliasing es un caso en el que las aristas de los fragmentos interceptan a los píxeles por la mitad lo que genera que se vea irregular la forma. Es por esto que existe el anti-aliasing, que divide los píxeles con 16 puntos distintos y dependiendo de cuántos puntos se ven cubiertos será el valor del color que se encuentran en el Pixel. Es por eso que muchas veces los píxeles las orillas suelen ser más transparentes.
+
+**¿Qué relación hay entre la iluminación y el fragment shader? Siempre es necesario tener en cuenta la iluminación en un fragment shader? o puedo hacer un fragment shader sin iluminación? Explica que implicaciones tiene esto.**
+
+El Fragment shading es el encargado de calcular el color final de cada píxel basándose en diferentes factores como la iluminación. No es obligatorio llevar iluminación si lo que se desea es simular colores planos (cosa poco común). De resto es necesario para darle profundidad al objeto. La principal implicación de no ponerle la luz es que se vea un color plano cutre y también podría afectar a como percibimos las texturas ya que muchas dependen de la posición de la luz para que se vean
+
+**¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?**
+
+el hecho de que un programa tenga múltiples iluminaciones, requiere de que se generen miles de cálculos instantáneos para poder variar la tonalidad de cada una de las caras que conforman el fragmento de modelo visible a la cámara
