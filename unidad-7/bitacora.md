@@ -32,6 +32,8 @@ Lo primero que vi es que era necesario configurar aspectos de la ventana, como s
 
 <img width="1919" height="1033" alt="image" src="https://github.com/user-attachments/assets/e9eccc93-e977-441e-82f9-01fe2a73325b" />
 
+**<a name="exp1"></a>**
+
 > lo logré 😃
 
 Para poder crear un proyecto en OpenGL es necesario agregar elementos externos, lo cuales son las dependencias del proyecto. Entre estas hay dos librerías que son fundamentales para OpenGL las cuales son GLFW y GLAD, además en este caso también se descargo una biblioteca llamada GLM (ya voy a explicar estas tres). Para incluirlas simplemente hay que agregar una carpeta dentro de el proyecto, la cual va a contener subcarpetas con la información descargada. 
@@ -54,6 +56,7 @@ Lo que pasa aquí es que la imagen en sí se dibuja en el framebuffer, sin embar
 
 Básicamente lo que he aprendido hasta ahora es que para hacer un programa de openGL es necesario tener en cuenta varios aspectos que deben ser incluidos dentro del proyecto. De hecho es por esto que este se ve tan complejo porque se divide en muchas partes. Entonces están las partes externas que son las bibliotecas que se instalaron al inicio. Eso lo expliqué bien cada una de qué se trata sin embargo voy a profundizar específicamente en GLFW qué fue la que usamos para esta actividad. Entonces ¿de que de encarga esa biblioteca?, básicamente de crear ventanas y manejar eventos y esto no es útil porque así no tenemos que poner código en cada proyecto para crear ventanas sino que ya tenemos de dónde sacar esa información.
 
+**<a name="exp2"></a>**
 Ahora cómo se conecta esto con lo demás, con el contexto de OpenGL se conecta ya que este es el que contiene todas las funciones de dicha interfaz. Por otro lado hay dos partes fundamentales de la ventana que se crea el framebuffer y el viewport. El framebuffer es como el escenario en donde va a estar dibujado o pintado cada Pixel que hace el Open GL, mientras que el viewport es la parte de este framebuffer que es visible, por ende el área donde se estará dibujando.
 
 Para estos experimentos primero cambie la variable SCR_WIDTH de 400 a 250, al cambiarlo se ve así:
@@ -80,6 +83,7 @@ Esto es algo fuera de lo previsto ya que habría pensado normalmente que a poner
 
 estructura de datos que contiene los recursos y la conexión de ventana donde se dibujarán los gráficos
 
+**<a name="exp3"></a>**
 **¿Cuál es el rol de la biblioteca GLFW y qué ventaja tiene usarla?**
 
 Es la que nos permite crear las ventanas y recibir sus eventos, así como también eventos de entrada. Se encarga de los datos como el tamaño de la ventana o si pulsamos la tecla Esc para cerrarla. La ventaja de utilizar esa biblioteca es que nos permite reutilizar código para no tener que diseñar el uso de las ventanas en cada programa.
@@ -176,6 +180,7 @@ El Aliasing es un caso en el que las aristas de los fragmentos interceptan a los
 
 El Fragment shading es el encargado de calcular el color final de cada píxel basándose en diferentes factores como la iluminación. No es obligatorio llevar iluminación si lo que se desea es simular colores planos (cosa poco común). De resto es necesario para darle profundidad al objeto. La principal implicación de no ponerle la luz es que se vea un color plano cutre y también podría afectar a como percibimos las texturas ya que muchas dependen de la posición de la luz para que se vean
 
+**<a name="exp4"></a>**
 **¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?**
 
 el hecho de que un programa tenga múltiples iluminaciones, requiere de que se generen miles de cálculos instantáneos para poder variar la tonalidad de cada una de las caras que conforman el fragmento de modelo visible a la cámara
@@ -196,9 +201,9 @@ Finalmente con glDrawArrays dibujar la figuras, pidiendo que se unan los 3 vért
 
 **Escribe un resumen en tus propias palabras de lo que necesitas para poder usar un shader en OpenGL.**
 
-Los shaders son programas que se ejecutan en la GPU y esos procesan los vértices y los fragmentos. Para este ejemplo entonces se crea en el objeto una función que contiene el programa de los shaders. Y a está función se le agrega un ID gracias al celi es que se puede llamar más tarde en otros momentos dentro del programa. 
+Los shaders son programas que se ejecutan en la GPU y esos procesan los vértices y los fragmentos. Para este ejemplo entonces se crea en el objeto una función que contiene el programa de los shaders. Y a está función se le agrega un ID gracias este es que se puede llamar más tarde en otros momentos dentro del programa. 
 Entonces por este caso primero llamaba el shader de los vértices para verificar los errores, y después decía lo mismo con fragmentos. Eso con la intención de ver primero lo más sencillo y luego ir hacia lo más complejo. 
-Cuando te verifique que no hay ningún problema con los shaders simplemente se eliminan porque ya no son necesarios. Es decir, en realidad son una guía sin embargo no se elimina el objeto que contenía la información de los shaders, qué es el encargado de ejecutarlos en la GPU.
+Cuando se verifique que no hay ningún problema con los shaders simplemente se eliminan porque ya no son necesarios. Es decir, en realidad son una guía sin embargo no se elimina el objeto que contenía la información de los shaders, qué es el encargado de ejecutarlos en la GPU.
 
 Ahora podemos ver cada shader por separado: los de vértices reciben los datos de dos puntos respecto a su posición y lo convierte en un vector con esa información. En ese caso lo podés ver como el componente w lo asigna siempre como un 1 para que todas las coordenadas sean homogéneas. Después de lo que se ve esta como información debe traducirse a la pantalla en el viewport. Un paso importante en esta parte es establecer una localización para el Buffer de los atributos (o su espacio de memoria) que permite más tarde vincular los vértices al Buffer de vertices.
 
@@ -212,6 +217,7 @@ Supongo que como los triangulos que va a aparecer usan un draw diferentes y shad
 
 ## Actividad 05 🧛
 
+**<a name="exp5"></a>**
 Hice dos intentos y ambos salieron algo distintos:
 El primero parese una culebra que cambia de color. Al paarecer el problema con este es que le faltaba limpiar los trazos en la pantalla
 <img width="500" height="526" alt="image" src="https://github.com/user-attachments/assets/ccb3ed2e-49e9-4c4d-ab3c-0f322981be12" />
@@ -282,3 +288,8 @@ Mi nota es:
 | Actividad | Calificación | Justificación |
 |-----------|--------------|---------------|
 | Ac 1    |  1na unidad | La actividad esta completa y supe detectar bien mis dudas respecto y más adelante en los otros ejercicios logré aclararlas |
+| Ac 2    |  1na unidad | La actividad esta completa y si logré crear el programa desde cero, [como se ve aquí](#exp1), y aunque fue complejo o mejor dicho un proceso largo, pude comprender porque haciamos cada uno de estos pasos y la importancia de estos elementos externos|
+| Ac 3    |  1na unidad |  Todo listo y además en esta actividad logré responder algunas de mis preguntas iniciales sobre el [framebuffer](#exp2) y que era [GLFW](#exp3) |
+| Ac 4    | 1na unidd   |  En esta actividad aprendí demasiado de como funciona un computador el parte gráfica, de hecho me pareció un tema muy interesante y es asombroso como una computadora logra procesar cantidades tan inmensas de información. [Aquí esta la avidencia del aprendizaje](#exp4)|
+| Ac 5    |  1na unidad |  Este punto fue algo gracioso porque lo intente una vez y se veía tan bonito que la quería dejar así pero luego entendi que estaba mal porque manejaba mal la memoria y no borraba los triangulos que generaba, por ende lo repetí y ya quedo bien. [Aquí esta](#exp5) aunque me gustaba más el anterior.|
+| Ac 6    | 0.9 unidades | Me baje un poco porque intuitivamente no intente cambiar rotación ni posició, principalmente debido tiempo, sin embaro de resto esta completo, si tengo tiempo hasta el jueves de realizarlo lo haré. |
