@@ -1,6 +1,6 @@
 # Bitácora de aprendizaje de la unidad 7
 
-## Actividad 01
+## Actividad 01 🧛
 
 **Incluye una captura de pantalla del ejemplo funcionando en tu máquina.**
 
@@ -12,7 +12,7 @@ Lo primero que vi es que era necesario configurar aspectos de la ventana, como s
 1. Inicial el GLFW (no sé que es).
 2. Crear la ventana para mostrar el resultado.
 3. Lee el tamaño del framebuffer (ni idea)
-4. Callbacks (menos)
+4. Callbacks 
 5. Cargar el GLAD y recursos para window1 (tampoco sé que es un GLAD)
 6. Habilita el v-sync (creo que se entiende que no sé muy bien que esta pasando)
 7. compila y linkea los shaders (😖)
@@ -22,12 +22,11 @@ Lo primero que vi es que era necesario configurar aspectos de la ventana, como s
 11. Limpieza, es decir, se borra todo. 
 
 **¿Qué preguntas te surgen al ver el código?. Anota al menos tres preguntas que te gustaría investigar más adelante (no te preocupes que la idea de esta unidad es que las resuelvas).**
-- ¿Qué son los shaders y porque estps necesitan fuentes? ¿Qué es un programa de shaders?
-- ¿Qué son los IDs globales y para que son necesarios?
+- ¿Qué son los shaders y porque estos necesitan fuentes? ¿Qué es un programa de shaders?
 - ¿Que significa GLFW?
-- ¿Qué es un framebuffer? ¿Qué es un callback? ¿Qué es un GLAD?
+- ¿Qué es un framebuffer?  ¿Qué es un GLAD?
 
-## Actividad 02
+## Actividad 02 🧛
 
 **Necesito que hagas digestión de esta información y que la entiendas. Para ello te voy a pedir un resumen en tus propias palabras de lo que acabas de leer. En tu resumen debes tratar de conectar GLFW, opengl32.lib, GLAD, GLM y los drivers de la GPU. ¿Qué rol cumple cada uno? ¿Cómo se relacionan entre sí? Mira, trata de hacer esto de memoria y como si estuvieras contándole a un amigo que quiere aprender OpenGL. Cuando haces el proceso de memoria tu cerebro hace un esfuerzo adicional y eso te ayuda a aprender. Además, si no recuerdas algo quiere decir que no lo entendiste bien y eso es una buena señal para que vuelvas a leerlo.**
 
@@ -45,7 +44,7 @@ Ahora, ¿Qué son los elementos externos que descargamos?:
 -  Drivers GPU: Software que sirve como puente entre el sistema operativo y las aplicaciones se comuniquen con la tarjeta gráfica de la computadora.
 -  GLM: es una biblioteca matemática para gráficos vectoriales, matrices y transformaciones que consiste en un solo código fuente.
 
-## Actividad 03 
+## Actividad 03 🧛
 
 **Cambia los valores de bufferWidth y bufferHeight: divide por 2, por 4, multiplica por 2, por 4, etc. ¿Qué pasa? ¿Qué observas? ¿Qué crees que está pasando?** 
 
@@ -134,7 +133,7 @@ La función se encarga de intercambiar el buffer trasero por el delantero asegur
 <img width="1011" height="658" alt="image" src="https://github.com/user-attachments/assets/05362e38-966b-46d9-8bb4-86329accd6a1" />
 La importancia está en que depende de esa función la fluidez del programa. En este caso como el programa colapso el computador lo siguió.
 
-## Actividad 04 
+## Actividad 04 🧛
 
 **¿Cuál es la diferencia entre una CPU y una GPU?**
 
@@ -211,7 +210,7 @@ Supongo que como los triangulos que va a aparecer usan un draw diferentes y shad
 
 <img width="1422" height="823" alt="image" src="https://github.com/user-attachments/assets/b1dd1299-e26c-477a-b373-60fe907f4e81" />
 
-## Actividad 05 
+## Actividad 05 🧛
 
 Hice dos intentos y ambos salieron algo distintos:
 El primero parese una culebra que cambia de color. Al paarecer el problema con este es que le faltaba limpiar los trazos en la pantalla
@@ -230,7 +229,7 @@ Es el proceso mediante el cual OpenGL transforma las posiciones de los vértices
 
 Todo lo que queda por fuera de los parámetros se recorta y no se muestra. En este código del triángulo, más coordenadas del mouse se convierten a este rango para que el desplazamiento del triángulo sea visible. En otras palabras, OpenGL utiliza el espacio NDC como puente antes de proyectar los vértices en coordenadas reales en pantalla
 
-## Actividad 06
+## Actividad 06 🧛
 
 **Describe brevemente los cambios que realizaste en el código C++ (dónde obtienes el tiempo, cómo y dónde actualizas el uniform).**
 
@@ -275,3 +274,11 @@ Así se ve un rato despúes
 **Reflexión: ¿Qué otros efectos visuales simples podrías lograr usando el tiempo como uniform? Piensa en la posición, el tamaño o la rotación (aunque no hemos visto rotaciones formalmente, ¡intuitivamente podrías intentarlo!). Anota al menos una idea.**
 
 La verdad el usar el tiempo con uniform abre muchas puertas a nuevas posiblidades. Por ejemplo hacer algo con rotación que sea un tipo reloj o con una mezcla de posición y rotación que imite al sol. 
+
+## Autoevaluación 🧛
+
+Mi nota es:
+
+| Actividad | Calificación | Justificación |
+|-----------|--------------|---------------|
+| Ac 1    |  1na unidad | La actividad esta completa y supe detectar bien mis dudas respecto y más adelante en los otros ejercicios logré aclararlas |
