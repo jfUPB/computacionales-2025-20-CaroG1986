@@ -229,3 +229,49 @@ La normalización es un proceso en cual se trasforma la información para entrar
 Es el proceso mediante el cual OpenGL transforma las posiciones de los vértices al rango estándar de -1 a 1 en cada eje (x, y, z) independientemente del tamaño del monitor. Aquí, x es de izquierda a derecha, y de abajo a arriba y z de cerca a lejos 
 
 Todo lo que queda por fuera de los parámetros se recorta y no se muestra. En este código del triángulo, más coordenadas del mouse se convierten a este rango para que el desplazamiento del triángulo sea visible. En otras palabras, OpenGL utiliza el espacio NDC como puente antes de proyectar los vértices en coordenadas reales en pantalla
+
+## Actividad 06
+
+**Describe brevemente los cambios que realizaste en el código C++ (dónde obtienes el tiempo, cómo y dónde actualizas el uniform).**
+
+Si vamos de arriba abajo se ve primero lo agregado en el fragmentShader, donde ahora hay 3 uniforms los cuales son dos de color y uno de tiempo. En esta parte también hay un main donde agregue un factor que controla el tiempo ( que veremos despúes), un vector que se encarga de cambiar los colores y que se vean bien cuando se "cruzan" y ya al final un vector que es el encargado del color que se vera en la figura.
+
+Despúes de confirmar el viewport se obtiene la ubicación de estos uniforms en el shader y además defini los colores que quiero que se vean, los cuales fueron verde y morado porque halloween. 
+
+Por último en el loop principal despues de indicar que use el shader program agrego el valor del tiempo y que se pase el valor al shader.
+
+**Pega el código modificado de tu fragment shader.**
+
+``` c++
+const char* fragmentShaderSrc = R"glsl(
+    #version 460 core
+	out vec4 FragColor;
+
+	uniform float time;
+	uniform vec3 color1;
+	uniform vec3 color2;
+
+	void main() {
+		
+        float factor = (cos(time) + 1.0) / 2.0;
+        vec3 finalColor = mix(color1, color2, factor);
+        FragColor = vec4(finalColor, 1.0);
+    }
+)glsl";
+```
+
+**Explica cómo usaste la función de tiempo (sin, cos, u otra) para lograr el efecto de cambio de color cíclico. ¿Qué rango de valores produce tu cálculo y cómo afecta eso al color final?**
+
+Lo hacen que  estas funciones básicamente es asignar un rango, que es entre 1 y -1 independiente mente se cual de las dos se use ya que matematicamente esas dos funciones son así. Ahora respecto a como estas afectan al color final ya que son estos valores los que llaman al cambio del color y según este será el resultado.
+
+**Incluye una captura de pantalla o UN ENLACE a un video mostrando el resultado del triángulo con color cambiante.**
+
+Aquí se ve verde
+<img width="624" height="515" alt="image" src="https://github.com/user-attachments/assets/dd4426b6-c644-4bf3-bfcc-eb458368b186" />
+
+Así se ve un rato despúes
+<img width="670" height="525" alt="image" src="https://github.com/user-attachments/assets/0a0cda56-6dcc-4de5-b9f9-7ff050a56635" />
+
+**Reflexión: ¿Qué otros efectos visuales simples podrías lograr usando el tiempo como uniform? Piensa en la posición, el tamaño o la rotación (aunque no hemos visto rotaciones formalmente, ¡intuitivamente podrías intentarlo!). Anota al menos una idea.**
+
+La verdad el usar el tiempo con uniform abre muchas puertas a nuevas posiblidades. Por ejemplo hacer algo con rotación que sea un tipo reloj o con una mezcla de posición y rotación que imite al sol. 
