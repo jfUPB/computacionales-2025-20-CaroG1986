@@ -283,13 +283,13 @@ La verdad el usar el tiempo con uniform abre muchas puertas a nuevas posiblidade
 
 ## Autoevaluación 🧛
 
-Mi nota es:
+Mi nota es:4.8
 
 | Actividad | Calificación | Justificación |
 |-----------|--------------|---------------|
 | Ac 1    |  1na unidad | La actividad esta completa y supe detectar bien mis dudas respecto y más adelante en los otros ejercicios logré aclararlas |
 | Ac 2    |  1na unidad | La actividad esta completa y si logré crear el programa desde cero, [como se ve aquí](#exp1), y aunque fue complejo o mejor dicho un proceso largo, pude comprender porque haciamos cada uno de estos pasos y la importancia de estos elementos externos|
 | Ac 3    |  1na unidad |  Todo listo y además en esta actividad logré responder algunas de mis preguntas iniciales sobre el [framebuffer](#exp2) y que era [GLFW](#exp3) |
-| Ac 4    | 1na unidd   |  En esta actividad aprendí demasiado de como funciona un computador el parte gráfica, de hecho me pareció un tema muy interesante y es asombroso como una computadora logra procesar cantidades tan inmensas de información. [Aquí esta la avidencia del aprendizaje](#exp4)|
-| Ac 5    |  1na unidad |  Este punto fue algo gracioso porque lo intente una vez y se veía tan bonito que la quería dejar así pero luego entendi que estaba mal porque manejaba mal la memoria y no borraba los triangulos que generaba, por ende lo repetí y ya quedo bien. [Aquí esta](#exp5) aunque me gustaba más el anterior.|
-| Ac 6    | 0.9 unidades | Me baje un poco porque intuitivamente no intente cambiar rotación ni posició, principalmente debido tiempo, sin embaro de resto esta completo, si tengo tiempo hasta el jueves de realizarlo lo haré. |
+| Ac 4    | 0.5 unidades   |  En esta actividad aprendí demasiado de como funciona un computador el parte gráfica, de hecho me pareció un tema muy interesante y es asombroso como una computadora logra procesar cantidades tan inmensas de información. [Aquí esta la avidencia del aprendizaje](#exp4)|
+| Ac 5    |  0.5 unidades |  Este punto fue algo gracioso porque lo intente una vez y se veía tan bonito que la quería dejar así pero luego entendi que estaba mal porque manejaba mal la memoria y no borraba los triangulos que generaba, por ende lo repetí y ya quedo bien. [Aquí esta](#exp5) aunque me gustaba más el anterior.|
+| Ac 6    | 0.8 unidades | Me baje un poco porque intuitivamente no intente cambiar rotación ni posició, principalmente debido tiempo, sin embaro de resto esta completo, si tengo tiempo hasta el jueves de realizarlo lo haré. |
