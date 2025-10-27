@@ -96,37 +96,115 @@ Cambio de color
 
 **- Lanza una hipótesis sobre lo que crees que va a pasar.**
 
+1. Para el primer experimento quería alterar el número de las iteraciones para ver cómo esto podría afectar a la imagen final. yo supongo que la forma cambia.
+2. Para el segundo experimento quería variar su color. 
+
 **- Ejecuta el código y observa lo que ocurre.**
+
+1. Primero cambié el número de iteraciones a 40 y como se ve la imagen sí cambia, pero no era un cambio muy drástico, así que para ver mejor en qué afectaba este número lo reduje aún más a 10. Entonces lo que ocurrió fue que la imagen es mucho menos compleja ahora y en sí es una figura más sencilla.
+2. Para el segundo experimento esperaba que el fondo cambiará otro color que no fuera rojo pero lo que pasó en realidad es que ahora es aún más rojo entonces supongo que fue porque cambié el número del hue a 10 lo que le da menos variación y por lo que termina siendo principalmente de color 
 
 **- ¿Tu hipótesis era correcta? ¿Por qué crees que ocurre esto?**
 
+1. Efectivmente la forma cambio y como mencione ahora es más sencilla.
+2. No se cumplió mi hipotesis ya que esperaba que al cambiar el hue el color sería diferente, peor si logró un resultado interesante.
+
 **Te dejo una idea para comenzar a experimentar: ¿Qué ocurre si cambias el número de hilos? ¿Por qué crees que ocurre esto?**
+
+<img width="1022" height="811" alt="image" src="https://github.com/user-attachments/assets/43c70042-bfe5-42ee-ade8-ad6061d347b1" />
+
+El mayor cambio que noto es el timpo que tomó, ahora le tomó un tiempo más largo hacer los calculos que con 16 hilos.
 
 ## Actividad 04
 
 **Observa ambos códigos y responde a las siguientes preguntas:**
 
+Sin hilos
+<img width="1033" height="820" alt="image" src="https://github.com/user-attachments/assets/0ccc7beb-1d52-4874-aceb-9502701787a7" />
+
+Con hilos
+<img width="1015" height="809" alt="image" src="https://github.com/user-attachments/assets/7d3eef11-5294-4b95-a1d6-fced993ee4f4" />
+
 **¿Cuál es la estructura de datos principal que contiene la información de todos los boids y que es accedida por múltiples hilos (el hilo principal para dibujar, el hilo trabajador para actualizar)?**
+
+La estructura de datos principal con la información es un vector llamado voids que almacena la información de todos los boids y es el que se accede por medio de los hilos.
 
 **- Observa la función Flock::threadedFunction() donde el hilo trabajador calcula el movimiento. ¿Qué operaciones realizan sobre el vector de boids compartido?**
 
+Se bloquea el acceso a la información dentro del vector compartido para poder realizar el calculo aparte.
+
 **- Observa la función ofApp::draw(). ¿Qué operación realiza sobre el vector compartido?**
+
+Esta función primero bloquea el vector y luego dibuja lo que se encuentre en el Flock para poder después desbloquear el vector y que usen otros hilos.
 
 **- Observa Flock::addBoid() y ofApp::mouseDragged(). ¿Qué operación realizan?**
 
+La función Flock::addBoid() básicamente le añade nuevos boids a el vector usando como referencia la posición del mouse, para que despúes la función ofApp::mouseDragged() active esta función y aparescan nuevos boids al arrastrar el mouse.
+
 **Describe un escenario específico y concreto donde la falta de sincronización podría causar un problema.**
+
+Digamos que un hilo se encarga de generar nuevos boids mientras que otro se encarga de pintarlos o dibujarlos, pero como ambos estaban leyendo la misma información el encargado de dibujarlos y los no tendría en cuenta el último agregado, Lo que podría generar una confusión respecto a cuál es el número real de hilos y que esto interfiera con el proceso.
 
 **Localiza todas las llamadas a lock() y unlock() dentro de la clase Flock (o donde se acceda al vector compartido).**
 
+Add boid
+``` c++
+void Flock::addBoid(int x, int y) {
+	lock();
+	boids.emplace_back(x, y);
+	unlock();
+}
+```
+
+Theareaded Fuction
+```c++
+void Flock::threadedFunction() {
+	while (isThreadRunning()) {
+		lock();
+		for (Boid & b : boids) {
+			b.run(boids);
+		}
+		unlock();
+		sleep(5);
+	}
+}
+```
+
+Draw
+``` c++
+void ofApp::draw() {
+	ofBackground(0);
+
+	flock.lock();
+	for (Boid & b : flock.boids) {
+		b.draw();
+	}
+	flock.unlock();
+
+	ofDrawBitmapStringHighlight("FPS: " + ofToString(ofGetFrameRate()), 20, 20);
+	ofDrawBitmapStringHighlight("Boids: " + ofToString(flock.boids.size()), 20, 40);
+}
+```
+
 **Aunque los locks aseguran la correctitud, ¿Puedes intuir por qué tener muchos hilos esperando para adquirir un lock sobre el mismo vector (alta contención) podría limitar el beneficio de rendimiento del paralelismo en este caso? Justifica tu respuesta.**
+
+Cuándo es el aplicado paralelismo a esta clase de programas con el fin de aumentar su eficiencia la idea es que la información fluya más rápido, sin embargo los locks impiden el flujo por un momento por lo que el proceso vuelve a ser lento así que lo vuelve un poco contradictorio con la idea que se tenía al principio.
 
 **Piensa en la pregunta que te acabo de hacer. ¿Qué pasaría si tuviéramos varios hilos que calculan el movimiento de los boids? ¿Cómo podrías implementar esto? ¿Qué problemas crees que podrían surgir? ¿Cómo podrías solucionarlos?**
 
+Sí se utilizará otros hilos para hacer los cálculos de la posición los problemas serían muy similares a los que se veían en ejemplos anteriores donde necesario agregarle bloqueos a la información para qué así no haya problemas de interferencia entre los hilos, pero con esos looks surge el problema de que disminuye la velocidad con la que se ejecuta el programa pero en estos casos no se prioriza tanto la velocidad, ya que como se ve al ejecutar el ejemplo sin importar sí se usan o la rapidez de ejecución no es muy distinta.
+
 **Analiza el código del Flocking sin hilos y el Flocking con hilos. ¿Qué diferencias encuentras? ¿Por qué crees que es importante la sincronización en el segundo caso?**
+
+Al revisar ambos códigos peramente las principales diferencias que logró detectar son la falta de bloqueos en el primer código ya que en ese caso no hay tanta probabilidad de que se desorganice la información y se altere del programa. Por otro lado, otra diferencia que encuentro es que cuando se usan hilos ay varias funciones encargadas de que dichos hilos inician su ejecución esperen al otro y finalicen las ejecuciones.
 
 **¿Por qué al añadir un nuevo boid la simulación se ralentiza? ¿Qué ocurre si añades muchos boids?**
 
+La operación no se ralentiza por qué es más información que procesar y el vector crece mucho más así que las operaciones que se hacen para cada parte del vector ahora son más largas. Si se añaden muchos directamente va como a 1 frame y se deja de apreciar el movimiento.
+
 **Notaste que la versión con hilos tiene un sleep(5) en el hilo trabajador. ¿Por qué crees que se ha añadido? ¿Qué pasaría si lo eliminamos?**
+
+
 
 **Compara el rendimiento de ambos enfoques. ¿Cuál crees que es más eficiente? ¿Por qué?**
 
