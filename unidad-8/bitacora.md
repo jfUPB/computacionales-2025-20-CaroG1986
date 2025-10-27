@@ -204,13 +204,19 @@ La operación no se ralentiza por qué es más información que procesar y el ve
 
 **Notaste que la versión con hilos tiene un sleep(5) en el hilo trabajador. ¿Por qué crees que se ha añadido? ¿Qué pasaría si lo eliminamos?**
 
-
+Para comprobar qué ocurriría lo intenté en el programa e iba demasiado lento, tipo a un frame por segundo, Por lo que supongo que ese sleep está ahí para que decía esta forma la información no llegue toda al mismo tiempo a ese hilo sino por intervalos para que pueda “pensar”.
 
 **Compara el rendimiento de ambos enfoques. ¿Cuál crees que es más eficiente? ¿Por qué?**
 
+En realidad, ambos casos tienen sus pros y sus contras y son útiles dependiendo del efecto que se quiera realizar, pero supongo que si es por la distribución de tareas la versión con hilos hace un buen trabajo restándole a la sobrecarga de actividades que debe realizar qué programa.
+
 **El uso de lock y unlock en la versión con hilos es crucial para evitar condiciones de carrera. ¿Qué pasaría si no se usaran? ¿Cómo afectaría esto al comportamiento del programa? (No olvides por favor que las condiciones de carrera son difíciles de reproducir, así que no te preocupes si no puedes verlas en acción).**
 
+Cómo vimos en experimentos anteriores lo que pasaría es que la información la verían todos los hilos y esto afectaría la armonía entre ellos ya que intentarían hacer todo al mismo tiempo y puede que muchas veces alteren en el curso del proyecto logrando así distintos resultados.
+
 **¿Qué ocurre si mientras el hilo trabajador está calculando el movimiento de los boids, el hilo principal intenta añadir un nuevo boid? ¿Se congelará la aplicación? ¿Por qué?**
+
+Lo más probable es que si esto ocurre no sé si pararía la aplicación por completo, pero creo que el hilo que está calculando la posición no tomaría en cuenta el nuevo valor de el dato que se añadió por lo que se desincronizaría lo que se ve en la pantalla.
 
 ## Actividad 05
 
