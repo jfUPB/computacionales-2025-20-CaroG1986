@@ -222,12 +222,63 @@ Lo más probable es que si esto ocurre no sé si pararía la aplicación por com
 
 **Pega la parte clave de tu función modificada que calcula el píxel para el conjunto de Julia. Recuerda utilizar un bloque cpp.**
 
+En app.h
+```c++
+int calculateMandelbrotPixel(int x, int y) {
+	//float cx = ofMap(x, 0, imgWidth, -2.0, 1.0);
+	//float cy = ofMap(y, 0, imgHeight, -1.5, 1.5);
+
+	float zx = ofMap(x, 0, imgWidth, -2.0, 1.0);
+	float zy = ofMap(y, 0, imgHeight, -1.5, 1.5);
+	int iterations = 0;
+	while (zx * zx + zy * zy < 4.0 && iterations < maxIterations) {
+		float tempX = zx * zx - zy * zy + vecK.x;
+		zy = 2.0 * zx * zy + vecK.y;
+		zx = tempX;
+		iterations++;
+	}
+	return iterations;
+}
+```
+
+En app.cpp
+```c++
+MandelbrotThread * newThread = new MandelbrotThread(startY, endY, imgWidth, imgHeight, maxIterations, pixels, juliaK);
+//-------------------------------------------------------------
+```
+
 **Muestra cómo mapeaste la posición del mouse a la constante k.**
+
+Para mapear la posición del mouse puse lo siguiente en el update
+```c++
+juliaK.x = ofMap(mouseX, 0, imgWidth, -1.5f, 1.5f);
+juliaK.y = ofMap(mouseY, 0, imgHeight, -1.5f, 1.5f);
+```
+
+y después cree una función para seguir el mouse
+```c++
+void ofApp::mouseDragged(int x, int y, int button) {
+
+	startCalculation();
+}
+```
 
 **Describe brevemente cómo reutilizaste la estructura de hilos de la versión Mandelbrot. ¿Tuviste que cambiar mucho esa parte?**
 
+La verdad no tuve que realizar casi cambios en esta estructura, de hecho creo que esta igual con la diferencia de una variable nueva en la parte de los calculos, la cual es el vector que almacena los cambios de la constante k, pero de resto la estructura puedo ser completamente reutilizada sin problema.
+
 **¿Cómo te aseguraste de que la imagen se recalculara cuando el mouse se movía?**
+
+Como ya explique antes, básicamente cree un vector que contiene la constante de todos los pixeles y que cambia con la posición del mouse, esta posición se aplica gracias a lo agregado en la clase update y con la función mouseDragged se llama a inicair los calculos, por lo que cada vez que cambia de posición se vuelve a realizar los calculos.
 
 **Incluye al menos dos capturas de pantalla que muestren diferentes fractales de Julia generados al mover el mouse en tu aplicación.**
 
+<img width="1023" height="804" alt="image" src="https://github.com/user-attachments/assets/6bf6a815-5456-448e-bee9-404d89366484" />
+
+<img width="1024" height="812" alt="image" src="https://github.com/user-attachments/assets/94fd2542-c996-4481-af75-8cb2ca9463fe" />
+
 **¿Encontraste algún desafío particular al implementar la interacción o modificar el cálculo?**
+
+Siento que al hacer esta actividad lo que se me dificulto son cosas más "sencillas", es decir, comprendi todo sobre los calculos y como funcionan los hilos, pero me costo más el ejercisio de comparar para agregar nuevas variables. Así que se podría decir que si comprendo muy bien la logica peor a vces me falla en la práctica.
+
+## Autoevaluación 
