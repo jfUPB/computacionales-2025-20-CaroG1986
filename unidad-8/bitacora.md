@@ -282,3 +282,8 @@ Como ya explique antes, básicamente cree un vector que contiene la constante de
 Siento que al hacer esta actividad lo que se me dificulto son cosas más "sencillas", es decir, comprendi todo sobre los calculos y como funcionan los hilos, pero me costo más el ejercisio de comparar para agregar nuevas variables. Así que se podría decir que si comprendo muy bien la logica peor a vces me falla en la práctica.
 
 ## Autoevaluación 
+
+Mi nota es:
+
+|Actividad  | Calificación | Justificación|
+|-----------|--------------|--------------|
