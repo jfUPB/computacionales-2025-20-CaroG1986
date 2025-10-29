@@ -1,7 +1,7 @@
 # Bitácora de aprendizaje de la unidad 8
 
 ## Actividad 01
-
+**<a name="exp1"></a>**
 **Ejecuta el programa y haz clic en la ventana. Observa lo que sucede. ¿Qué es lo que ves? ¿Qué es lo que esperabas ver? ¿Por qué crees que sucede esto?**
 
 <img width="1467" height="759" alt="image" src="https://github.com/user-attachments/assets/f1bf817f-fc13-4ef2-a609-15e61684a9ac" />
@@ -54,7 +54,7 @@ En esta parte se ve que bloquea el acceso a la información del tamaño del circ
 Supongo que sí hoy no se protege bien el acceso a ciertas variables esto generaría un gran desorden en el programa y causaría que cada hilo trabajé con la misma información, así que en realidad no la estaría modificando y luego usando el resultado, sino que se crearía una respuesta distinta a la esperada.
 
 **Ejecuta el código y observa el resultado. ¿Qué ocurre si cambias el valor de la variable useLock? ¿Por qué crees que ocurre esto?**
-
+**<a name="exp2"></a>**
 Con Lock
 <img width="1026" height="810" alt="image" src="https://github.com/user-attachments/assets/54e480c8-e900-4384-b5f1-cd4ea7a3076c" />
 
@@ -70,7 +70,7 @@ En este caso la condición de carrera se ve ya que como no existe un orden en cu
 ## Actividad 03
 
 **Ejecuta el código y observa el resultado.**
-
+**<a name="exp3"></a>**
 Secuencial
 <img width="1026" height="901" alt="image" src="https://github.com/user-attachments/assets/ef690cdf-bdd4-4a67-95a6-9a0ccf27be04" />
 
@@ -185,7 +185,7 @@ void ofApp::draw() {
 	ofDrawBitmapStringHighlight("Boids: " + ofToString(flock.boids.size()), 20, 40);
 }
 ```
-
+**<a name="exp4"></a>**
 **Aunque los locks aseguran la correctitud, ¿Puedes intuir por qué tener muchos hilos esperando para adquirir un lock sobre el mismo vector (alta contención) podría limitar el beneficio de rendimiento del paralelismo en este caso? Justifica tu respuesta.**
 
 Cuándo es el aplicado paralelismo a esta clase de programas con el fin de aumentar su eficiencia la idea es que la información fluya más rápido, sin embargo los locks impiden el flujo por un momento por lo que el proceso vuelve a ser lento así que lo vuelve un poco contradictorio con la idea que se tenía al principio.
@@ -203,7 +203,7 @@ Al revisar ambos códigos peramente las principales diferencias que logró detec
 La operación no se ralentiza por qué es más información que procesar y el vector crece mucho más así que las operaciones que se hacen para cada parte del vector ahora son más largas. Si se añaden muchos directamente va como a 1 frame y se deja de apreciar el movimiento.
 
 **Notaste que la versión con hilos tiene un sleep(5) en el hilo trabajador. ¿Por qué crees que se ha añadido? ¿Qué pasaría si lo eliminamos?**
-
+**<a name="exp5"></a>**
 Para comprobar qué ocurriría lo intenté en el programa e iba demasiado lento, tipo a un frame por segundo, Por lo que supongo que ese sleep está ahí para que decía esta forma la información no llegue toda al mismo tiempo a ese hilo sino por intervalos para que pueda “pensar”.
 
 **Compara el rendimiento de ambos enfoques. ¿Cuál crees que es más eficiente? ¿Por qué?**
@@ -283,7 +283,12 @@ Siento que al hacer esta actividad lo que se me dificulto son cosas más "sencil
 
 ## Autoevaluación 
 
-Mi nota es:
+Mi nota es: 5
 
 |Actividad  | Calificación | Justificación|
 |-----------|--------------|--------------|
+| Act 1     | 1na unidad   | La actividad esta completa y además siento que logré comprender realmente lo que sucedia en el código y puede dar los primeros pasos hacia la comprensión del paralelismo. [Aquí](#epx1) hay evidencia de la actividad.|
+| Act 2     | 1na unidad   | Esta completa y siento que especialmente [esta](#exp2) actividad me ayudo a comprender como funciona el bloqueo de cierta información para que así se garantize el correcto funcionamiento del programa.|
+| Act 3     | 1na unidad   | De [este](#exp3) ejercicio pude comprender mejor que no siempre usar más hilos significa más rápido, y más teniendo en cuenta la necesidad de proteger cierta información lo cual genera otro efecto de embotellamiento, sin embargo el uso de hilos no pierde su significado, ya que muchas veces el distribuir el trabajo ayuda y especialmente con operaciones complejas.|
+| Act 4     | 1na unidad   | [aquí](#exp4) se puede ver lo que estaba mencionando antes y también queria resaltar [esta](#exp5) parte, ya que me pareció muy curiosa la necesidad de darle un tiempo al programa para pensar.|
+| Act 5     | 1na unidad   | La actividad esta completa y la hice a través del la lógica y la comparación (y un poco de llanto), pero gracias a esto al final comprendí mejor el código y senti que no estaba muy lejos de él desde el inicio.|
